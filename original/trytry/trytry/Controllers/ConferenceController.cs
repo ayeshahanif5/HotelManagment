@@ -10,7 +10,7 @@ namespace trytry.Controllers
 {
     public class ConferenceController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {
@@ -32,12 +32,12 @@ namespace trytry.Controllers
         // GET: Conference/Create
         public ActionResult Create()
         {
-            return View(new ConferenceModel());
+            return View(new conference());
         }
 
         // POST: Conference/Create
         [HttpPost]
-        public ActionResult Create(ConferenceModel conferencemodel)
+        public ActionResult Create(conference conferencemodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -65,7 +65,7 @@ namespace trytry.Controllers
         // GET: Conference/Edit/5
         public ActionResult Edit(int id)
         {
-            ConferenceModel conferencemodel = new ConferenceModel();
+            conference conferencemodel = new conference();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -99,7 +99,7 @@ namespace trytry.Controllers
 
         // POST: Conference/Edit/5
         [HttpPost]
-        public ActionResult Edit(ConferenceModel conferencemodel)
+        public ActionResult Edit(conference conferencemodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -126,7 +126,7 @@ namespace trytry.Controllers
         // GET: Conference/Delete/5
         public ActionResult Delete(int id)
         {
-            ConferenceModel conferencemodel = new ConferenceModel();
+            conference conferencemodel = new conference();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {

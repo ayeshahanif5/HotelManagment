@@ -11,7 +11,7 @@ namespace trytry.Controllers
 {
     public class TableController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {
@@ -39,7 +39,7 @@ namespace trytry.Controllers
 
         // POST: Table/Create
         [HttpPost]
-        public ActionResult Create(TableModel tablemodel)
+        public ActionResult Create (TableModel tablemodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {

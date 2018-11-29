@@ -11,7 +11,7 @@ namespace trytry.Controllers
 {
     public class HotelController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {
@@ -34,12 +34,12 @@ namespace trytry.Controllers
         // GET: Hotel/Create
         public ActionResult Create()
         {
-            return View(new HotelModel());
+            return View(new hotel());
         }
 
         // POST: Hotel/Create
         [HttpPost]
-        public ActionResult Create(HotelModel hotelmodel)
+        public ActionResult Create(hotel hotelmodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -66,7 +66,7 @@ namespace trytry.Controllers
         // GET: Hotel/Edit/5
         public ActionResult Edit(int id)
         {
-            HotelModel hotelmodel = new HotelModel();
+            hotel hotelmodel = new hotel();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -96,7 +96,7 @@ namespace trytry.Controllers
 
         // POST: Hotel/Edit/5
         [HttpPost]
-        public ActionResult Edit(HotelModel hotelmodel)
+        public ActionResult Edit(hotel hotelmodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -123,7 +123,7 @@ namespace trytry.Controllers
         // GET: Hotel/Delete/5
         public ActionResult Delete(int id)
         {
-            HotelModel hotelmodel = new HotelModel();
+            hotel hotelmodel = new hotel();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {

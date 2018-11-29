@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-namespace trytry.Models
+namespace trytry.Models.CityModel
 {
     public class CityModel
     {
+        [Required]
+        [DataType(DataType.Text)]
         public int CityId { get; set; }
 
-        [DisplayName("City Name")]
+
+        [Required]
+        [DataType(DataType.Text)]
         public string CityName { get; set; }
+
+        
+            
+        
         public byte[] image { get; set; }
     }
 }

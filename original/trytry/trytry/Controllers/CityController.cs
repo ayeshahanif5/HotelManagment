@@ -1,17 +1,23 @@
-﻿using System;
+﻿using trytry.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
-using System.Data.SqlClient;
-using trytry.Models;
 
-namespace trytry.Controllers
+using System.Data.SqlClient;
+
+using System.IO;
+using System.Data.Entity.Infrastructure;
+
+namespace trytry.Controllers.CityController
 {
     public class CityController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        private object db;
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -30,16 +36,16 @@ namespace trytry.Controllers
         }
 
       
-
+        [HttpGet]
         // GET: City/Create
         public ActionResult Create()
         {
-            return View(new CityModel());
+            return View(new City());
         }
 
         // POST: City/Create
         [HttpPost]
-        public ActionResult Create(CityModel citymodel)
+        public ActionResult Create(City citymodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -48,17 +54,48 @@ namespace trytry.Controllers
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CityName", citymodel.CityName);
 
-           
+                //
+
+
+                string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
+                string extension = Path.GetExtension(citymodel.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                citymodel.ImagePath = "~/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                citymodel.ImageFile.SaveAs(fileName);
+                //using (DbModels db = new DbModels()
+                //{
+                //    db.Images.Add(citymodel);
+
+
+
+
+                //}
+
+
+
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                return View();
             }
-            return RedirectToAction("Index");
+        }
+         [HttpGet]  
+        
+        public ActionResult View(int id)
+        {
+            City citymodel = new City();
+            using (DbModels db = new DbModels())
+            {
+                citymodel = db.Cities.Where(x => x.CityId == id).FirstOrDefault();
+            }
+            return View(citymodel);
         }
 
         // GET: City/Edit/5
         public ActionResult Edit(int id)
         {
-            CityModel citymodel = new CityModel();
+            City citymodel = new City();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -85,7 +122,7 @@ namespace trytry.Controllers
 
         // POST: City/Edit/5
         [HttpPost]
-        public ActionResult Edit(CityModel citymodel)
+        public ActionResult Edit(City citymodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -106,7 +143,7 @@ namespace trytry.Controllers
         // GET: City/Delete/5
         public ActionResult Delete(int id)
         {
-            CityModel citymodel = new CityModel();
+            City citymodel = new City();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -146,6 +183,11 @@ namespace trytry.Controllers
 
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Add()
+        {
+            return View();
         }
     }
 }
