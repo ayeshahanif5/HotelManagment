@@ -11,9 +11,7 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Web;
-
+    
     public partial class City
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,10 +22,8 @@ namespace trytry.Models
     
         public int CityId { get; set; }
         public string CityName { get; set; }
-        [DisplayName("Upload Image")]
-        public string ImagePath { get; set; }
-        public HttpPostedFileBase ImageFile { get; set; }
-
+        public byte[] image { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hotel> hotels { get; set; }
     }

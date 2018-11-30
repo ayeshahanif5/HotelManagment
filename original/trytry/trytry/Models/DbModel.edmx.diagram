@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="hotelModel.Login" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hotelModel.Sign_In" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hotelModel.tablebooking" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.wedding" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.wedding" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="false" />
         <AssociationConnector Association="hotelModel.FK_hotel_City" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
