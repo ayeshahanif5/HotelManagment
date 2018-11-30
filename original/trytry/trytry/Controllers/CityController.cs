@@ -5,8 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+<<<<<<< HEAD
 
 using System.Data.SqlClient;
+=======
+using System.Linq;
+using System.Data.SqlClient;
+
+using System.IO;
+using System.Data.Entity.Infrastructure;
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73
 
 using System.IO;
 using System.Data.Entity.Infrastructure;
@@ -15,7 +23,11 @@ namespace trytry.Controllers.CityController
 {
     public class CityController : Controller
     {
+<<<<<<< HEAD
         string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+=======
+        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73
         private object db;
 
         [HttpGet]

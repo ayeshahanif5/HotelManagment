@@ -244,6 +244,7 @@ C:\Users\Anum\Desktop\HotelManagment\original\trytry\trytry\bin\Microsoft.Owin.S
 C:\Users\Anum\Desktop\HotelManagment\original\trytry\trytry\obj\Debug\trytry.csprojResolveAssemblyReference.cache
 C:\Users\Anum\Desktop\HotelManagment\original\trytry\trytry\obj\Debug\trytry.dll
 C:\Users\Anum\Desktop\HotelManagment\original\trytry\trytry\obj\Debug\trytry.pdb
+<<<<<<< HEAD
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\obj\Debug\trytry.csprojResolveAssemblyReference.cache
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\obj\Debug\trytry.dll
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\obj\Debug\trytry.pdb
@@ -326,3 +327,5 @@ C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\bin\Microsoft.Owin
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\de\Desktop\hms\HotelManagment\original\trytry\trytry\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+=======
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73

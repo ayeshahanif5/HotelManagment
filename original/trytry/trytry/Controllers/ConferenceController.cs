@@ -10,7 +10,11 @@ namespace trytry.Controllers
 {
     public class ConferenceController : Controller
     {
+<<<<<<< HEAD
         string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+=======
+        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73
         [HttpGet]
         public ActionResult Index()
         {

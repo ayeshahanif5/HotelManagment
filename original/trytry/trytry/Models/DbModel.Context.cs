@@ -13,7 +13,10 @@ namespace trytry.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73
     public partial class DbModels : DbContext
     {
         public DbModels()
@@ -29,10 +32,17 @@ namespace trytry.Models
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<conference> conferences { get; set; }
         public virtual DbSet<hotel> hotels { get; set; }
+<<<<<<< HEAD
         //public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Sign_In> Sign_In { get; set; }
         public virtual DbSet<TableModel> tablebookings { get; set; }
+=======
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<Sign_In> Sign_In { get; set; }
+        public virtual DbSet<tablebooking> tablebookings { get; set; }
+>>>>>>> 2fabd8ac4f2c71a90f40a834c1ca6af90e262e73
         public virtual DbSet<wedding> weddings { get; set; }
     }
 }
