@@ -15,7 +15,7 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
         private object db;
 
         [HttpGet]
@@ -60,21 +60,18 @@ namespace trytry.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
                 string extension = Path.GetExtension(citymodel.ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                citymodel.ImagePath = "~/Image/" + fileName;
+                citymodel.image = "~/Image/" + fileName;
                 fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
                 citymodel.ImageFile.SaveAs(fileName);
-                //using (DbModels db = new DbModels()
-                //{
-                //    db.Images.Add(citymodel);
+                using (hotelEntities2 db = new hotelEntities2())
+                {
+                    db.Cities.Add(citymodel);
+                    db.SaveChanges();
+                }
 
 
 
-
-                //}
-
-
-
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 con.Close();
 
                 return View();
@@ -85,7 +82,7 @@ namespace trytry.Controllers
         public ActionResult View(int id)
         {
             City citymodel = new City();
-            using (DbModels db = new DbModels())
+            using (hotelEntities2 db =new hotelEntities2())
             {
                 citymodel = db.Cities.Where(x => x.CityId == id).FirstOrDefault();
             }

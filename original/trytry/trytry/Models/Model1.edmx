@@ -248,7 +248,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DbModels" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="hotelEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="conferences" EntityType="Self.conference" />
           <EntitySet Name="hotels" EntityType="Self.hotel" />
@@ -267,7 +267,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="DbModels">
+        <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="hotelEntities2">
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="hotelModel.City">
               <MappingFragment StoreEntitySet="City">

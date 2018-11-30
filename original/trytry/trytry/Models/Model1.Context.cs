@@ -13,10 +13,10 @@ namespace trytry.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DbModels : DbContext
+    public partial class hotelEntities2 : DbContext
     {
-        public DbModels()
-            : base("name=DbModels")
+        public hotelEntities2()
+            : base("name=hotelEntities2")
         {
         }
     

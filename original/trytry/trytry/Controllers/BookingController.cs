@@ -11,7 +11,7 @@ namespace trytry.Controllers
 {
     public class BookingController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {
