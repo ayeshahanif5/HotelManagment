@@ -26,6 +26,6 @@ namespace trytry.Models
         public Nullable<System.DateTime> checkindate { get; set; }
         public Nullable<System.DateTime> checkoutdate { get; set; }
     
-        public virtual City City { get; set; }
+        public virtual c c { get; set; }
     }
 }

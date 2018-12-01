@@ -13,10 +13,10 @@ namespace trytry.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class hotelEntities2 : DbContext
+    public partial class hotelEntities4 : DbContext
     {
-        public hotelEntities2()
-            : base("name=hotelEntities2")
+        public hotelEntities4()
+            : base("name=hotelEntities4")
         {
         }
     
@@ -25,12 +25,13 @@ namespace trytry.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<c> c { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<conference> conferences { get; set; }
         public virtual DbSet<hotel> hotels { get; set; }
-        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Sign_In> Sign_In { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tablebooking> tablebookings { get; set; }
         public virtual DbSet<wedding> weddings { get; set; }
     }

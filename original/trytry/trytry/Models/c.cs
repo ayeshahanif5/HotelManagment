@@ -12,14 +12,19 @@ namespace trytry.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class City
+    public partial class c
     {
-        public City()
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public c()
         {
-            image = null;
+            this.hotels = new HashSet<hotel>();
         }
+    
         public int CityId { get; set; }
         public string CityName { get; set; }
         public byte[] image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hotel> hotels { get; set; }
     }
 }

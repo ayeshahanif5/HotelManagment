@@ -5,13 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="hotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="City">
+        <EntityType Name="c">
           <Key>
             <PropertyRef Name="CityId" />
           </Key>
           <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CityName" Type="varchar" MaxLength="50" />
           <Property Name="image" Type="image" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="conference">
           <Key>
@@ -45,14 +53,6 @@
           <Property Name="checkindate" Type="date" />
           <Property Name="checkoutdate" Type="date" />
         </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="ImageID" />
-          </Key>
-          <Property Name="ImageID" Type="int" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="250" />
-          <Property Name="ImagePath" Type="varchar(max)" />
-        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="Email" />
@@ -72,6 +72,16 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tablebooking">
           <Key>
@@ -105,10 +115,10 @@
           <Property Name="address" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_hotel_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="c" Type="Self.c" Multiplicity="0..1" />
           <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="City">
+            <Principal Role="c">
               <PropertyRef Name="CityId" />
             </Principal>
             <Dependent Role="hotel">
@@ -117,16 +127,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="hotelModelStoreContainer">
+          <EntitySet Name="c" EntityType="Self.c" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="conference" EntityType="Self.conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hotel" EntityType="Self.hotel" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sign_In" EntityType="Self.Sign_In" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tablebooking" EntityType="Self.tablebooking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="wedding" EntityType="Self.wedding" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">
-            <End Role="City" EntitySet="City" />
+            <End Role="c" EntitySet="c" />
             <End Role="hotel" EntitySet="hotel" />
           </AssociationSet>
         </EntityContainer>
@@ -135,14 +146,22 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="hotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="City">
+        <EntityType Name="c">
           <Key>
             <PropertyRef Name="CityId" />
           </Key>
           <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="hotels" Relationship="Self.FK_hotel_City" FromRole="City" ToRole="hotel" />
+          <NavigationProperty Name="hotels" Relationship="Self.FK_hotel_City" FromRole="c" ToRole="hotel" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="conference">
           <Key>
@@ -175,15 +194,7 @@
           <Property Name="avaliablerooms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="checkindate" Type="DateTime" Precision="0" />
           <Property Name="checkoutdate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="City" Relationship="Self.FK_hotel_City" FromRole="hotel" ToRole="City" />
-        </EntityType>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="ImageID" />
-          </Key>
-          <Property Name="ImageID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="c" Relationship="Self.FK_hotel_City" FromRole="hotel" ToRole="c" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -204,6 +215,16 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tablebooking">
           <Key>
@@ -237,10 +258,10 @@
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_hotel_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="c" Type="Self.c" Multiplicity="0..1" />
           <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="City">
+            <Principal Role="c">
               <PropertyRef Name="CityId" />
             </Principal>
             <Dependent Role="hotel">
@@ -248,17 +269,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="hotelEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="hotelEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="c" EntityType="Self.c" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="conferences" EntityType="Self.conference" />
           <EntitySet Name="hotels" EntityType="Self.hotel" />
-          <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Sign_In" EntityType="Self.Sign_In" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="tablebookings" EntityType="Self.tablebooking" />
           <EntitySet Name="weddings" EntityType="Self.wedding" />
           <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">
-            <End Role="City" EntitySet="Cities" />
+            <End Role="c" EntitySet="c" />
             <End Role="hotel" EntitySet="hotels" />
           </AssociationSet>
         </EntityContainer>
@@ -267,7 +289,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="hotelEntities2">
+        <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="hotelEntities4">
+          <EntitySetMapping Name="c">
+            <EntityTypeMapping TypeName="hotelModel.c">
+              <MappingFragment StoreEntitySet="c">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="hotelModel.City">
               <MappingFragment StoreEntitySet="City">
@@ -311,15 +342,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="hotelModel.Image">
-              <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Logins">
             <EntityTypeMapping TypeName="hotelModel.Login">
               <MappingFragment StoreEntitySet="Login">
@@ -339,6 +361,17 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="hotelModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -15,7 +15,7 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
         private object db;
 
         [HttpGet]
@@ -25,10 +25,19 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
+         
                 string query = "Select * from City";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
                 ada.Fill(dt);
+               
+                //City objmainProperty = new City();
+                //foreach (DataRow dr in dt.Rows)
+                //{
+                //    City objProperty = new City();
+                //    objProperty.image = (byte[])dr["image"];
+                //    objmainProperty.image = objProperty.image;
+                //}
                 con.Close();
 
             }
@@ -45,49 +54,61 @@ namespace trytry.Controllers
 
         // POST: City/Create
         [HttpPost]
-        public ActionResult Create(City citymodel)
+        public ActionResult Create(City citymodel,HttpPostedFileBase image1)
         {
+         
+            if(image1 != null)
+            {
+                citymodel.image = new byte[image1.ContentLength];
+                
+                image1.InputStream.Read(citymodel.image, 0, image1.ContentLength);
+
+            }
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "insert into City(CityName) values (@CityName)";
+                //string filepath = Path.GetFileName(image1.FileName);
+                //string savedfilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(image1.FileName));
+                //image1.SaveAs(Server.MapPath("~/Desktop/Images/" + filepath));
+                string query = "insert into City(CityName,image) values (@CityName,@image)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CityName", citymodel.CityName);
-
+                cmd.Parameters.AddWithValue("@image", citymodel.image);
                 //
 
 
-                string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
-                string extension = Path.GetExtension(citymodel.ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                citymodel.image = "~/Image/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                citymodel.ImageFile.SaveAs(fileName);
-                using (hotelEntities2 db = new hotelEntities2())
-                {
-                    db.Cities.Add(citymodel);
-                    db.SaveChanges();
-                }
+                //string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
+                //string extension = Path.GetExtension(citymodel.ImageFile.FileName);
+                //fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                //citymodel.image = "~/Image/" + fileName;
+                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                //citymodel.ImageFile.SaveAs(fileName);
+                //using (hotelEntities2 db = new hotelEntities2())
+                //{
+                //    db.Cities.Add(citymodel);
+                //    db.SaveChanges();
+                //}
 
 
 
-                    cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 con.Close();
 
-                return View();
+               
             }
+            return RedirectToAction("Index");
         }
          [HttpGet]  
         
-        public ActionResult View(int id)
-        {
-            City citymodel = new City();
-            using (hotelEntities2 db =new hotelEntities2())
-            {
-                citymodel = db.Cities.Where(x => x.CityId == id).FirstOrDefault();
-            }
-            return View(citymodel);
-        }
+        //public ActionResult View(int id)
+        //{
+        //    City citymodel = new City();
+        //    using (hotelEntities2 db =new hotelEntities2())
+        //    {
+        //        citymodel = db.Cities.Where(x => x.CityId == id).FirstOrDefault();
+        //    }
+        //    return View(citymodel);
+        //}
 
         // GET: City/Edit/5
         public ActionResult Edit(int id)

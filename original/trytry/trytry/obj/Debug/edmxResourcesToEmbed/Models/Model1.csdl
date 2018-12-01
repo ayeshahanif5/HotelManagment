@@ -1,13 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="hotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="City">
+  <EntityType Name="c">
     <Key>
       <PropertyRef Name="CityId" />
     </Key>
     <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="hotels" Relationship="Self.FK_hotel_City" FromRole="City" ToRole="hotel" />
+    <NavigationProperty Name="hotels" Relationship="Self.FK_hotel_City" FromRole="c" ToRole="hotel" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="conference">
     <Key>
@@ -40,15 +48,7 @@
     <Property Name="avaliablerooms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="checkindate" Type="DateTime" Precision="0" />
     <Property Name="checkoutdate" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="City" Relationship="Self.FK_hotel_City" FromRole="hotel" ToRole="City" />
-  </EntityType>
-  <EntityType Name="Image">
-    <Key>
-      <PropertyRef Name="ImageID" />
-    </Key>
-    <Property Name="ImageID" Type="Int32" Nullable="false" />
-    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="c" Relationship="Self.FK_hotel_City" FromRole="hotel" ToRole="c" />
   </EntityType>
   <EntityType Name="Login">
     <Key>
@@ -69,6 +69,16 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="tablebooking">
     <Key>
@@ -102,10 +112,10 @@
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_hotel_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="c" Type="Self.c" Multiplicity="0..1" />
     <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="City">
+      <Principal Role="c">
         <PropertyRef Name="CityId" />
       </Principal>
       <Dependent Role="hotel">
@@ -113,17 +123,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="hotelEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="hotelEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="c" EntityType="Self.c" />
     <EntitySet Name="Cities" EntityType="Self.City" />
     <EntitySet Name="conferences" EntityType="Self.conference" />
     <EntitySet Name="hotels" EntityType="Self.hotel" />
-    <EntitySet Name="Images" EntityType="Self.Image" />
     <EntitySet Name="Logins" EntityType="Self.Login" />
     <EntitySet Name="Sign_In" EntityType="Self.Sign_In" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="tablebookings" EntityType="Self.tablebooking" />
     <EntitySet Name="weddings" EntityType="Self.wedding" />
     <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">
-      <End Role="City" EntitySet="Cities" />
+      <End Role="c" EntitySet="c" />
       <End Role="hotel" EntitySet="hotels" />
     </AssociationSet>
   </EntityContainer>

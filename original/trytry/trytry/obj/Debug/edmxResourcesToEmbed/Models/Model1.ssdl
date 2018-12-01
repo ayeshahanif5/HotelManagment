@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="hotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="City">
+  <EntityType Name="c">
     <Key>
       <PropertyRef Name="CityId" />
     </Key>
     <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CityName" Type="varchar" MaxLength="50" />
     <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="conference">
     <Key>
@@ -40,14 +48,6 @@
     <Property Name="checkindate" Type="date" />
     <Property Name="checkoutdate" Type="date" />
   </EntityType>
-  <EntityType Name="Image">
-    <Key>
-      <PropertyRef Name="ImageID" />
-    </Key>
-    <Property Name="ImageID" Type="int" Nullable="false" />
-    <Property Name="Title" Type="varchar" MaxLength="250" />
-    <Property Name="ImagePath" Type="varchar(max)" />
-  </EntityType>
   <EntityType Name="Login">
     <Key>
       <PropertyRef Name="Email" />
@@ -67,6 +67,16 @@
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
     <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="tablebooking">
     <Key>
@@ -100,10 +110,10 @@
     <Property Name="address" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_hotel_City">
-    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="c" Type="Self.c" Multiplicity="0..1" />
     <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="City">
+      <Principal Role="c">
         <PropertyRef Name="CityId" />
       </Principal>
       <Dependent Role="hotel">
@@ -112,16 +122,17 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="hotelModelStoreContainer">
+    <EntitySet Name="c" EntityType="Self.c" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="conference" EntityType="Self.conference" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="hotel" EntityType="Self.hotel" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sign_In" EntityType="Self.Sign_In" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tablebooking" EntityType="Self.tablebooking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="wedding" EntityType="Self.wedding" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">
-      <End Role="City" EntitySet="City" />
+      <End Role="c" EntitySet="c" />
       <End Role="hotel" EntitySet="hotel" />
     </AssociationSet>
   </EntityContainer>
