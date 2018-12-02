@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using trytry.Models;
+using System.IO;
+using System.Data.Entity.Infrastructure;
 
 namespace trytry.Controllers
 {
     public class WeddingController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {
@@ -39,12 +41,19 @@ namespace trytry.Controllers
 
         // POST: Wedding/Create
         [HttpPost]
-        public ActionResult Create(wedding weddingmodel)
+        public ActionResult Create(wedding weddingmodel, HttpPostedFileBase image1)
         {
+            if (image1 != null)
+            {
+                weddingmodel.image = new byte[image1.ContentLength];
+
+                image1.InputStream.Read(weddingmodel.image, 0, image1.ContentLength);
+
+            }
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "insert into wedding(CityName,HallName,facilities,capacity,budget,address) values (@CityName,@HallName,@facilities,@capacity,@budget,@address)";
+                string query = "insert into wedding(CityName,HallName,facilities,capacity,budget,address,image) values (@CityName,@HallName,@facilities,@capacity,@budget,@address,@image)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CityName", weddingmodel.CityName);
                 cmd.Parameters.AddWithValue("@HallName", weddingmodel.HallName);
@@ -52,6 +61,7 @@ namespace trytry.Controllers
                 cmd.Parameters.AddWithValue("@capacity", weddingmodel.capacity);
                 cmd.Parameters.AddWithValue("@budget", weddingmodel.budget);
                 cmd.Parameters.AddWithValue("@address", weddingmodel.address);
+                cmd.Parameters.AddWithValue("@address", weddingmodel.image);
 
 
                 cmd.ExecuteNonQuery();

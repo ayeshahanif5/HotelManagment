@@ -205,6 +205,7 @@
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WeddingBookingController.cs" />
@@ -379,6 +380,7 @@
     <Folder Include="Content\mytemplate\js\" />
     <Folder Include="Image\" />
     <Folder Include="Views\Image\" />
+    <Folder Include="Views\SignIn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

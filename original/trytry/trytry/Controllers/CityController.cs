@@ -15,7 +15,7 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        string connectionstring = @"Data Source=DESKTOP-OT0GBTM;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True";
         private object db;
 
         [HttpGet]
