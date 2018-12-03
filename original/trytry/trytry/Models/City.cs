@@ -14,12 +14,8 @@ namespace trytry.Models
     
     public partial class City
     {
-        public City()
-        {
-            image = null;
-        }
         public int CityId { get; set; }
         public string CityName { get; set; }
-        public byte[] image { get; set; }
+        public string image { get; set; }
     }
 }

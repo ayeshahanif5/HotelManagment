@@ -13,10 +13,10 @@ namespace trytry.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class hotelEntities4 : DbContext
+    public partial class hotelEntities5 : DbContext
     {
-        public hotelEntities4()
-            : base("name=hotelEntities4")
+        public hotelEntities5()
+            : base("name=hotelEntities5")
         {
         }
     
@@ -31,7 +31,6 @@ namespace trytry.Models
         public virtual DbSet<hotel> hotels { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Sign_In> Sign_In { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tablebooking> tablebookings { get; set; }
         public virtual DbSet<wedding> weddings { get; set; }
     }

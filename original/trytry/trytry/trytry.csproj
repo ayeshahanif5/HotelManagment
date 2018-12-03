@@ -246,12 +246,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sign_In.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Sign_In.cs" />
     <Compile Include="Models\tablebooking.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -371,6 +366,10 @@
     <Content Include="Views\WeddingBooking\Index.cshtml" />
     <Content Include="Views\City\Add.cshtml" />
     <Content Include="Views\City\View.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\Cities.cshtml" />
+    <Content Include="Views\Home\Sign_In.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

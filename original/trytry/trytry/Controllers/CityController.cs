@@ -57,13 +57,13 @@ namespace trytry.Controllers
         public ActionResult Create(City citymodel,HttpPostedFileBase image1)
         {
          
-            if(image1 != null)
-            {
-                citymodel.image = new byte[image1.ContentLength];
+            //if(image1 != null)
+            //{
+            //    citymodel.image = new byte[image1.ContentLength];
                 
-                image1.InputStream.Read(citymodel.image, 0, image1.ContentLength);
+            //    image1.InputStream.Read(citymodel.image, 0, image1.ContentLength);
 
-            }
+            //}
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();

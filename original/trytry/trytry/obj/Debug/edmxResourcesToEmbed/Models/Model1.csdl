@@ -14,8 +14,8 @@
       <PropertyRef Name="CityId" />
     </Key>
     <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="conference">
     <Key>
@@ -70,16 +70,6 @@
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ConfirmPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="tablebooking">
     <Key>
       <PropertyRef Name="TableId" />
@@ -123,14 +113,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="hotelEntities4" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="hotelEntities5" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="c" EntityType="Self.c" />
     <EntitySet Name="Cities" EntityType="Self.City" />
     <EntitySet Name="conferences" EntityType="Self.conference" />
     <EntitySet Name="hotels" EntityType="Self.hotel" />
     <EntitySet Name="Logins" EntityType="Self.Login" />
     <EntitySet Name="Sign_In" EntityType="Self.Sign_In" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="tablebookings" EntityType="Self.tablebooking" />
     <EntitySet Name="weddings" EntityType="Self.wedding" />
     <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">

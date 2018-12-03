@@ -4,6 +4,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta name="keywords" content="Luscious a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -25,7 +27,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="@Url.Content("~/Content/mytemplate/")css/font-awesome.css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
-    
 </head>
 <body>
     <div class="header" id="home">
@@ -75,13 +76,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
                         <nav>
                             <ul class="top_nav">
-                                <li><a class="scroll" href="#home">Home</a></li>
-                                <li>@Html.ActionLink("About", "About", "User")</li>
-                                <li>@Html.ActionLink("Cities", "Cities", "User")</li>
-                                <li>@Html.ActionLink("Contact", "Contact", "User")</li>
-                                <li>@Html.ActionLink("Gallery", "Gallery", "User")</li>
-                                <li>@Html.ActionLink("Services", "Services", "User")</li>
-                                <li><a class="scroll" href="#mail">Login</a></li>
+                                
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Services", "Services", "Home")</li>
+
+                                <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
+                                <li>@Html.ActionLink("Cities", "Cities", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Create Account", "Sign_In", "Home")</li>
+                                <li>@Html.ActionLink("Login", "Login", "Home")</li>
+
                             </ul>
                         </nav>
                     </div>
@@ -105,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </div>
                     </li>
-                    <li id="callbacks1_s1" class="callbacks1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 1000ms ease-in-out 0s;">
+                    <li id="callbacks1_s1" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 1000ms ease-in-out 0s;">
                         <div class="banner-top1">
                             <div class="banner-info_agile_w3ls">
                                 <h3>HOTEL <span> MANAGEMENT</span> SYSTEM</h3>
@@ -116,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </div>
                     </li>
-                    <li id="callbacks1_s2" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; transition: opacity 1000ms ease-in-out 0s;">
+                    <li id="callbacks1_s2" class="callbacks1_on" style="display: block; float: left; position: relative; opacity: 1; z-index: 2; transition: opacity 1000ms ease-in-out 0s;">
                         <div class="banner-top2">
                             <div class="banner-info_agile_w3ls">
                                 <h3>HOTEL <span>MANAGEMENT</span> SYSTEM</h3>
@@ -138,9 +143,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </div>
                     </li>
-                </ul><a href="#" class="callbacks_nav callbacks1_nav prev">Previous</a><a href="#" class="callbacks_nav callbacks1_nav next">Next</a><ul class="callbacks_tabs callbacks1_tabs"><li class="callbacks1_s1"><a href="#" class="callbacks1_s1">1</a></li><li class="callbacks1_s2 callbacks_here"><a href="#" class="callbacks1_s2">2</a></li><li class="callbacks1_s3"><a href="#" class="callbacks1_s3">3</a></li><li class="callbacks1_s4"><a href="#" class="callbacks1_s4">4</a></li></ul>
+                </ul><a href="#" class="callbacks_nav callbacks1_nav prev">Previous</a><a href="#" class="callbacks_nav callbacks1_nav next">Next</a><ul class="callbacks_tabs callbacks1_tabs"><li class="callbacks1_s1"><a href="#" class="callbacks1_s1">1</a></li><li class="callbacks1_s2"><a href="#" class="callbacks1_s2">2</a></li><li class="callbacks1_s3 callbacks_here"><a href="#" class="callbacks1_s3">3</a></li><li class="callbacks1_s4"><a href="#" class="callbacks1_s4">4</a></li></ul>
             </div>
-            <div class="clearfix"> </div>
+
 
             <!--banner Slider starts Here-->
         </div>
@@ -148,7 +153,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--//Slider-->
     </div>
 
+    <div>
+        @RenderBody()
     </div>
-    <div>@RenderBody()</div>
 </body>
 </html>
