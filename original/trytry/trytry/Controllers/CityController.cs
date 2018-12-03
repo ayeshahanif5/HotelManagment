@@ -15,33 +15,16 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        hotelEntities5 dc = new hotelEntities5();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True";
         private object db;
 
         [HttpGet]
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-         
-                string query = "Select * from City";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-               
-                //City objmainProperty = new City();
-                //foreach (DataRow dr in dt.Rows)
-                //{
-                //    City objProperty = new City();
-                //    objProperty.image = (byte[])dr["image"];
-                //    objmainProperty.image = objProperty.image;
-                //}
-                con.Close();
-
-            }
-            return View(dt);
+            List<City> lists = new List<City>();
+            lists = dc.Cities.ToList();
+            return View(lists);
         }
 
       
@@ -49,54 +32,44 @@ namespace trytry.Controllers
         // GET: City/Create
         public ActionResult Create()
         {
-            return View(new City());
+            return View();
         }
 
         // POST: City/Create
         [HttpPost]
-        public ActionResult Create(City citymodel,HttpPostedFileBase image1)
+        public ActionResult Create(City city)
         {
-         
-            //if(image1 != null)
-            //{
-            //    citymodel.image = new byte[image1.ContentLength];
-                
-            //    image1.InputStream.Read(citymodel.image, 0, image1.ContentLength);
 
-            //}
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            try
             {
-                con.Open();
-                //string filepath = Path.GetFileName(image1.FileName);
-                //string savedfilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(image1.FileName));
-                //image1.SaveAs(Server.MapPath("~/Desktop/Images/" + filepath));
-                string query = "insert into City(CityName,image) values (@CityName,@image)";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CityName", citymodel.CityName);
-                cmd.Parameters.AddWithValue("@image", citymodel.image);
-                //
+                string filename = Path.GetFileNameWithoutExtension(city.ImageFile.FileName);
+                string extension = Path.GetExtension(city.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                city.image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                city.ImageFile.SaveAs(filename);
+                using (hotelEntities5 dc = new hotelEntities5())
+                {
+                    if (dc.Cities.Any(x => x.CityName == city.CityName))
+                    {
+                        ViewBag.DuplicateMessage = "CityName already exist.";
+                        return View(city);
+                    }
+                    dc.Cities.Add(city);
+                    dc.SaveChanges();
+                }
 
-
-                //string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
-                //string extension = Path.GetExtension(citymodel.ImageFile.FileName);
-                //fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                //citymodel.image = "~/Image/" + fileName;
-                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                //citymodel.ImageFile.SaveAs(fileName);
-                //using (hotelEntities2 db = new hotelEntities2())
-                //{
-                //    db.Cities.Add(citymodel);
-                //    db.SaveChanges();
-                //}
-
-
-
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-               
             }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Successful";
             return RedirectToAction("Index");
+
+
         }
          [HttpGet]  
         

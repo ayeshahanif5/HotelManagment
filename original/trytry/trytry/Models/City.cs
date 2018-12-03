@@ -13,13 +13,14 @@ namespace trytry.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel;
+    using System.Web;
     
     public partial class City
     {
         public int CityId { get; set; }
 
 
-
+        public HttpPostedFileBase ImageFile { get; set; }
         [DisplayName("CityName")]
         [Required(ErrorMessage = "CityName is required.")]
         [StringLength(50)]
