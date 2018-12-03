@@ -3,44 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace trytry.Controllers
 {
-    public class WeddingBookingController : Controller
+    public class AdminController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
-        [HttpGet]
+        // GET: Admin
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from wedding";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            return View();
         }
 
-        // GET: WeddingBooking/Details/5
+        // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: WeddingBooking/Create
+        // GET: Admin/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: WeddingBooking/Create
+        // POST: Admin/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -56,13 +42,13 @@ namespace trytry.Controllers
             }
         }
 
-        // GET: WeddingBooking/Edit/5
+        // GET: Admin/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: WeddingBooking/Edit/5
+        // POST: Admin/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -78,13 +64,13 @@ namespace trytry.Controllers
             }
         }
 
-        // GET: WeddingBooking/Delete/5
+        // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: WeddingBooking/Delete/5
+        // POST: Admin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
