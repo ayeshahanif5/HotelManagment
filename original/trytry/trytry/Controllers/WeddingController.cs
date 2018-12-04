@@ -13,7 +13,7 @@ namespace trytry.Controllers
 {
     public class WeddingController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
         [HttpGet]
         public ActionResult Index()
         {

@@ -12,7 +12,7 @@ namespace trytry.Controllers
 {
     public class HomeController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
         private object db;
         public ActionResult Index()
         {
