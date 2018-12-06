@@ -1,0 +1,99 @@
+﻿@model trytry.Models.conference
+
+@{
+    ViewBag.Title = "Conference_Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Conference_Booking</h2>
+
+<div>
+    <h4>conference</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HallId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HallId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HallName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HallName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facilities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fooditems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fooditems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

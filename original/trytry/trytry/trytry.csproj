@@ -375,6 +375,10 @@
     <Content Include="Views\Shared\_Bookings.cshtml" />
     <Content Include="Views\Bookings\Room_Booking.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
+    <Content Include="Views\Home\SHOW_HOTEL.cshtml" />
+    <Content Include="Views\Bookings\Conference_Booking.cshtml" />
+    <Content Include="Views\Home\SHOW_CONFERENCE_HALL.cshtml" />
+    <Content Include="Views\Home\SHOW_WEDDING_HALL.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

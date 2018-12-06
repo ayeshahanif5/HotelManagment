@@ -112,6 +112,105 @@ namespace trytry.Controllers
             {
                 return View();
             }
+
         }
+
+
+
+
+
+        //[HttpPost]
+        //public ActionResult Conference_Booking(int id)
+        //{
+        //    //hotel conferencemodel = new hotel();
+        //DataTable dt = new DataTable();
+        //using (SqlConnection con = new SqlConnection(connectionstring))
+        //{
+        //    con.Open();
+        //    string query = "Select * from hotel where CityId = @CityId";
+        //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
+        //    ada.SelectCommand.Parameters.AddWithValue("@CityId", id);
+        //    ada.Fill(dt);
+        //    con.Close();
+        //}
+        //if (dt.Rows.Count == 1)
+        //{
+        //    conferencemodel.CityId = Convert.ToInt32(dt.Rows[0][0].ToString());
+        //    //conferencemodel.CityName = dt.Rows[0][1].ToString();
+        //    //conferencemodel.HallName = dt.Rows[0][2].ToString();
+        //    //conferencemodel.facilities = dt.Rows[0][3].ToString();
+        //    //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
+        //    //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
+        //    //conferencemodel.address = dt.Rows[0][10].ToString();
+
+
+
+
+        //    return View(conferencemodel);
+        //}
+        //else
+        //{
+        //    return View();
+        //}
+
+
+
+
+
+
+
+
+
+        // GET: Bookings/Create
+        public ActionResult Conference_Booking()
+        {
+            return View(new hotel());
+        }
+
+        // POST: Bookings/Create
+        [HttpPost]
+        public ActionResult Conference_Booking(hotel hotel)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                //string filepath = Path.GetFileName(image1.FileName);
+                //string savedfilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(image1.FileName));
+                //image1.SaveAs(Server.MapPath("~/Desktop/Images/" + filepath));
+                string query = "insert into hotel(avaliableconferencerooms,checkindate,checkoutdate) values (@avaliableconferencerooms,@checkindate,@checkoutdate)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@avaliableconferencerooms", hotel.avaliablerooms);
+                cmd.Parameters.AddWithValue("@checkindate", hotel.checkindate);
+                cmd.Parameters.AddWithValue("@checkoutdate", hotel.checkoutdate);
+                //
+
+
+                //string fileName = Path.GetFileNameWithoutExtension(citymodel.ImageFile.FileName);
+                //string extension = Path.GetExtension(citymodel.ImageFile.FileName);
+                //fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                //citymodel.image = "~/Image/" + fileName;
+                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                //citymodel.ImageFile.SaveAs(fileName);
+                //using (hotelEntities2 db = new hotelEntities2())
+                //{
+                //    db.Cities.Add(citymodel);
+                //    db.SaveChanges();
+                //}
+
+
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+            }
+            return RedirectToAction("Index");
+        }
+
+
+
+
     }
 }
+    
+

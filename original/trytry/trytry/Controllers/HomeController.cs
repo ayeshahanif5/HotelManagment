@@ -146,6 +146,213 @@ namespace trytry.Controllers
             con.Close();
             return View();
         }
+        //     [HttpPost]
+        public ActionResult SHOW_HOTEL(int id)
+        {
+            //DataTable dt = new DataTable();
+            //using (SqlConnection con = new SqlConnection(connectionstring))
+            //{
+            //    con.Open();
+
+            //    string query = "Select * from hotel where CityId = @id";
+            //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+            //    ada.Fill(dt);
+            //    con.Close();
+
+            //}
+
+
+            hotel conferencemodel = new hotel();
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from hotel where CityId = @CityId";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+                ada.SelectCommand.Parameters.AddWithValue("@CityId", id);
+                ada.Fill(dt);
+                con.Close();
+            }
+            if (dt.Rows.Count == 1)
+            {
+                conferencemodel.CityId = Convert.ToInt32(dt.Rows[0][0].ToString());
+                //conferencemodel.CityName = dt.Rows[0][1].ToString();
+                //conferencemodel.HallName = dt.Rows[0][2].ToString();
+                //conferencemodel.facilities = dt.Rows[0][3].ToString();
+                //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
+                //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
+                //conferencemodel.address = dt.Rows[0][10].ToString();
+
+
+
+
+                return View(conferencemodel);
+            }
+            else
+            {
+                return View();
+            }
+        }
+            [HttpPost]
+        public ActionResult SHOW_CONFERENCE_HALL(int id)
+        {
+            //DataTable dt = new DataTable();
+            //using (SqlConnection con = new SqlConnection(connectionstring))
+            //{
+            //    con.Open();
+
+            //    string query = "Select * from hotel where CityId = @id";
+            //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+            //    ada.Fill(dt);
+            //    con.Close();
+
+            //}
+
+
+            conference conferencemodel = new conference();
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from conference where HotelId = @HotelId";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+                ada.SelectCommand.Parameters.AddWithValue("@HotelId", id);
+                ada.Fill(dt);
+                con.Close();
+            }
+            if (dt.Rows.Count == 1)
+            {
+                conferencemodel.HallId = Convert.ToInt32(dt.Rows[0][0].ToString());
+                //conferencemodel.CityName = dt.Rows[0][1].ToString();
+                //conferencemodel.HallName = dt.Rows[0][2].ToString();
+                //conferencemodel.facilities = dt.Rows[0][3].ToString();
+                //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
+                //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
+                //conferencemodel.address = dt.Rows[0][10].ToString();
+
+
+
+
+                return View(conferencemodel);
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+
+
+
+
+        [HttpPost]
+        public ActionResult SHOW_WEDDING_HALL(int id)
+        {
+            //DataTable dt = new DataTable();
+            //using (SqlConnection con = new SqlConnection(connectionstring))
+            //{
+            //    con.Open();
+
+            //    string query = "Select * from hotel where CityId = @id";
+            //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+            //    ada.Fill(dt);
+            //    con.Close();
+
+            //}
+
+
+            wedding conferencemodel = new wedding();
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from wedding where HotelId = @HotelId";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+                ada.SelectCommand.Parameters.AddWithValue("@HotelId", id);
+                ada.Fill(dt);
+                con.Close();
+            }
+            if (dt.Rows.Count == 1)
+            {
+                conferencemodel.HallId = Convert.ToInt32(dt.Rows[0][0].ToString());
+                //conferencemodel.CityName = dt.Rows[0][1].ToString();
+                //conferencemodel.HallName = dt.Rows[0][2].ToString();
+                //conferencemodel.facilities = dt.Rows[0][3].ToString();
+                //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
+                //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
+                //conferencemodel.address = dt.Rows[0][10].ToString();
+
+
+
+
+                return View(conferencemodel);
+            }
+            else
+            {
+                return View();
+            }
+
+
+
+
+        }
+
+
+
+
+
+
+
+        //public ActionResult SHOW_TABLE(int id)
+        //{
+        //    //DataTable dt = new DataTable();
+        //    //using (SqlConnection con = new SqlConnection(connectionstring))
+        //    //{
+        //    //    con.Open();
+
+        //    //    string query = "Select * from hotel where CityId = @id";
+        //    //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+        //    //    ada.Fill(dt);
+        //    //    con.Close();
+
+        //    //}
+
+
+        //  wedding conferencemodel = new wedding();
+        //    DataTable dt = new DataTable();
+        //    using (SqlConnection con = new SqlConnection(connectionstring))
+        //    {
+        //        con.Open();
+        //        string query = "Select * from wedding where HotelId = @HotelId";
+        //        SqlDataAdapter ada = new SqlDataAdapter(query, con);
+        //        ada.SelectCommand.Parameters.AddWithValue("@HotelId", id);
+        //        ada.Fill(dt);
+        //        con.Close();
+        //    }
+        //    if (dt.Rows.Count == 1)
+        //    {
+        //        conferencemodel.HallId = Convert.ToInt32(dt.Rows[0][0].ToString());
+        //        //conferencemodel.CityName = dt.Rows[0][1].ToString();
+        //        //conferencemodel.HallName = dt.Rows[0][2].ToString();
+        //        //conferencemodel.facilities = dt.Rows[0][3].ToString();
+        //        //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
+        //        //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
+        //        //conferencemodel.address = dt.Rows[0][10].ToString();
+
+
+
+
+        //        return View(conferencemodel);
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
 
     }
 }

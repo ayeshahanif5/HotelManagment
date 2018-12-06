@@ -23,14 +23,14 @@
 
 
            
-            <div><p>@Html.ActionLink("Edittt", "Edit", new { id = item.CityId })` </p></div>
+            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.CityId })` </p></div>
             <div><p>@Html.ActionLink("Delete","Delete", new {id = item.CityId })</p></div>
         </div>
     }
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.CityId })*@
-    @Html.ActionLink("Back To List", "Index")
+    @Html.ActionLink("Add City", "Create")
 </p>
 
 
