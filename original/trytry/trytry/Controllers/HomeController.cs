@@ -12,7 +12,8 @@ namespace trytry.Controllers
 {
     public class HomeController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        hotelEntities5 dc = new hotelEntities5();
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         private object db;
         public ActionResult Index()
         {
@@ -41,11 +42,11 @@ namespace trytry.Controllers
         }
         public ActionResult Cities()
         {
+
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-
                 string query = "Select * from City";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
@@ -53,15 +54,38 @@ namespace trytry.Controllers
                 con.Close();
 
             }
-
             return View(dt);
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your application description page.";
+            return View(new ContactUs());
+        }
 
-            return View();
+        [HttpPost]
+        public ActionResult Contact(ContactUs contact)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "insert into ContactUs(Name,Email,Telephone,Subject,Message) values(@Name,@Email,@Telephone,@Subject,@Message)";
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@Name", contact.Name);
+
+                cmd.Parameters.AddWithValue("@Email", contact.Email);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@Telephone", contact.Telephone);
+                cmd.Parameters.AddWithValue("@Subject",contact.Subject);
+
+                cmd.Parameters.AddWithValue("@Message", contact.Message);
+               
+                cmd.ExecuteNonQuery();
+                //}   // TODO: Add insert logic here
+                con.Close();
+
+                return RedirectToAction("Index");
+            }
         }
         [HttpGet]
         public ActionResult Sign_In()
@@ -146,54 +170,37 @@ namespace trytry.Controllers
             con.Close();
             return View();
         }
-        //     [HttpPost]
-        public ActionResult SHOW_HOTEL(int id)
+     
+        public ActionResult SHOW_Hotel(string cityname)
         {
-            //DataTable dt = new DataTable();
-            //using (SqlConnection con = new SqlConnection(connectionstring))
-            //{
-            //    con.Open();
-
-            //    string query = "Select * from hotel where CityId = @id";
-            //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-            //    ada.Fill(dt);
-            //    con.Close();
-
-            //}
-
-
-            hotel conferencemodel = new hotel();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from hotel where CityId = @CityId";
+                string query = "Select * from hotel where CityName = '"+cityname+"';";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
-                ada.SelectCommand.Parameters.AddWithValue("@CityId", id);
+
                 ada.Fill(dt);
                 con.Close();
+
             }
-            if (dt.Rows.Count == 1)
-            {
-                conferencemodel.CityId = Convert.ToInt32(dt.Rows[0][0].ToString());
-                //conferencemodel.CityName = dt.Rows[0][1].ToString();
-                //conferencemodel.HallName = dt.Rows[0][2].ToString();
-                //conferencemodel.facilities = dt.Rows[0][3].ToString();
-                //conferencemodel.capacity = Convert.ToInt32(dt.Rows[0][6].ToString());
-                //conferencemodel.budget = Convert.ToInt32(dt.Rows[0][9].ToString());
-                //conferencemodel.address = dt.Rows[0][10].ToString();
-
-
-
-
-                return View(conferencemodel);
-            }
-            else
-            {
-                return View();
-            }
+            return View(dt);
         }
+        //[HttpGet]
+        //public act
+        //[HttpPost]
+        //public ActionResult SHOW_HOTEL(string Name)
+        //{
+        //    using (hotelEntities5 db = new hotelEntities5())
+        //    {
+        //        return View(db.hotels.Where(x => x.CityName == Name).FirstOrDefault());
+        //    }
+
+
+
+            
+            
+        //}
             [HttpPost]
         public ActionResult SHOW_CONFERENCE_HALL(int id)
         {
@@ -265,12 +272,12 @@ namespace trytry.Controllers
             //}
 
 
-            wedding conferencemodel = new wedding();
+            wedding1 conferencemodel = new wedding1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from wedding where HotelId = @HotelId";
+                string query = "Select * from wedding1 where HotelId = @HotelId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@HotelId", id);
                 ada.Fill(dt);

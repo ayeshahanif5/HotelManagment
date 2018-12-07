@@ -1,40 +1,32 @@
 ﻿@model System.Data.DataTable
 @{
-    ViewBag.Title = "Cities";
-    Layout = "~/Views/Shared/_User.cshtml";
-   
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
 <table class="table table-bordered table-striped">
     <tr>
+        <th>City Name</th>
 
-        <th>
-            City Name
-        </th>
         <th>
             Image
         </th>
-        <th>
 
-        </th>
-     
+       
+        <th></th>
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
     {
         <tr>
-            <li>
-            <td>@Model.Rows[i][1]</td></li> 
-            <td>@Model.Rows[i][2]</td>
-            <td>@Html.ActionLink("SHOW_HOTEL", "SHOW_HOTEL", "Home", new { @id = @Model.Rows[i][0] },new { })</td>
-            @*<td>
-                    <img src="/Desktop/images" alt="" height=100 width=200 />
-                </td>*@
+            <td>@Model.Rows[i][1]</td>
+            <td><img src="@Model.Rows[i][2]"  height=" 350" width="250" /></td>
             
+
+            <td>
+                <a href="@Url.Action("SHOW_HOTEL", "Home", new {@cityname=@Model.Rows[i][1]})">Show</a>
+            </td>
         </tr>
     }
 </table>
-
-<p>@Html.ActionLink("Show Hotels", "SHOW_HOTEL", "Home")</p>
-
-
+<a href="@Url.Action("Create","Conference")">Add Conference Hall</a>
 

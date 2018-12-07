@@ -32,6 +32,6 @@ namespace trytry.Models
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Sign_In> Sign_In { get; set; }
         public virtual DbSet<tablebooking> tablebookings { get; set; }
-        public virtual DbSet<wedding> weddings { get; set; }
+        public virtual DbSet<wedding1> weddings { get; set; }
     }
 }

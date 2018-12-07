@@ -11,7 +11,7 @@ namespace trytry.Controllers
 {
     public class TableController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         public ActionResult Index()
         {
             DataTable dt = new DataTable();

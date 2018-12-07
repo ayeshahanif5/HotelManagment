@@ -13,7 +13,7 @@ namespace trytry.Controllers
 {
     public class WeddingController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
@@ -21,7 +21,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from wedding";
+                string query = "Select * from wedding1";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
                 ada.Fill(dt);
@@ -31,29 +31,29 @@ namespace trytry.Controllers
             return View(dt);
         }
 
-       
+
 
         // GET: Wedding/Create
         public ActionResult Create()
         {
-            return View(new wedding());
+            return View(new wedding1());
         }
 
         // POST: Wedding/Create
         [HttpPost]
-        public ActionResult Create(wedding weddingmodel, HttpPostedFileBase image1)
+        public ActionResult Create(wedding1 weddingmodel, HttpPostedFileBase image1)
         {
-            if (image1 != null)
-            {
-                weddingmodel.image = new byte[image1.ContentLength];
+            //if (image1 != null)
+            //{
+            //    weddingmodel.image = new byte[image1.ContentLength];
 
-                image1.InputStream.Read(weddingmodel.image, 0, image1.ContentLength);
+            //    image1.InputStream.Read(weddingmodel.image, 0, image1.ContentLength);
 
-            }
+            //}
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "insert into wedding(CityName,HallName,facilities,capacity,budget,address,image) values (@CityName,@HallName,@facilities,@capacity,@budget,@address,@image)";
+                string query = "insert into wedding1(CityName,HallName,facilities,capacity,budget,address,image) values (@CityName,@HallName,@facilities,@capacity,@budget,@address,@image)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CityName", weddingmodel.CityName);
                 cmd.Parameters.AddWithValue("@HallName", weddingmodel.HallName);
@@ -70,15 +70,28 @@ namespace trytry.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult AddnewWeddingHall()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult SaveData(wedding1 weddding)
+        //{
+        //    if(weddding.CityName != null && weddding.HallName !=null && weddding.address != null && weddding.budget != null && weddding.capacity !=null && weddding.image != null)
+        //    {
+        //        string filename = Path.GetFileNameWithoutExtension(weddding.image.fil);
+        //        string extension = Path.get
+        //    }
+        //}
         // GET: Wedding/Edit/5
         public ActionResult Edit(int id)
         {
-            wedding weddingmodel = new wedding();
+            wedding1 weddingmodel = new wedding1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from wedding where HallId = @HallId";
+                string query = "Select * from wedding1 where HallId = @HallId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@HallId", id);
                 ada.Fill(dt);
@@ -104,12 +117,12 @@ namespace trytry.Controllers
 
         // POST: Wedding/Edit/5
         [HttpPost]
-        public ActionResult Edit(wedding weddingmodel)
+        public ActionResult Edit(wedding1 weddingmodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Update wedding set CityName = @CityName, HallName = @HallName, facilities = @facilities, capacity = @capacity, budget = @budget, address = @address where HallId = @HallId";
+                string query = "Update wedding1 set CityName = @CityName, HallName = @HallName, facilities = @facilities, capacity = @capacity, budget = @budget, address = @address where HallId = @HallId";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@HallId", weddingmodel.HallId);
                 cmd.Parameters.AddWithValue("@CityName", weddingmodel.CityName);
@@ -128,12 +141,12 @@ namespace trytry.Controllers
         // GET: Wedding/Delete/5
         public ActionResult Delete(int id)
         {
-            wedding weddingmodel = new wedding();
+            wedding1 weddingmodel = new wedding1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from wedding where HallId = @HallId";
+                string query = "Select * from wedding1 where HallId = @HallId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@HallId", id);
                 ada.Fill(dt);
@@ -164,7 +177,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Delete From wedding where HallId = @HallId";
+                string query = "Delete From wedding1 where HallId = @HallId";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@HallId", id);
 

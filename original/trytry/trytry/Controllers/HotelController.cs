@@ -11,7 +11,7 @@ namespace trytry.Controllers
 {
     public class HotelController : Controller
     {
-        string connectionstring = @"Data Source=DELL;Initial Catalog=hotel;Integrated Security=True";
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
@@ -44,9 +44,9 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "insert into hotel(hotelname,address,facilities,budget,avaliablerooms) values (@hotelname,@address,@facilities,@budget,@avaliablerooms)";
+                string query = "insert into hotel(CityName,hotelname,address,facilities,budget,avaliablerooms) values (@CityName,@hotelname,@address,@facilities,@budget,@avaliablerooms)";
                 SqlCommand cmd = new SqlCommand(query, con);
-
+                cmd.Parameters.AddWithValue("@CityName", hotelmodel.CityName);
                 cmd.Parameters.AddWithValue("@hotelname",hotelmodel.hotelname);
 
                 cmd.Parameters.AddWithValue("@address",hotelmodel.address);
