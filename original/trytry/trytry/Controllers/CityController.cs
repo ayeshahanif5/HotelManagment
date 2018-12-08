@@ -15,8 +15,8 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        hotelEntities5 dc = new hotelEntities5();
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities6 dc = new hotelEntities6();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         private object db;
 
         [HttpGet]
@@ -48,13 +48,13 @@ namespace trytry.Controllers
                 city.image = "~/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Image/"), filename);
                 city.ImageFile.SaveAs(filename);
-                using (hotelEntities5 dc = new hotelEntities5())
+                using (hotelEntities6 dc = new hotelEntities6())
                 {
-                    if (dc.Cities.Any(x => x.CityName == city.CityName))
-                    {
-                        ViewBag.DuplicateMessage = "CityName already exist.";
-                        return View(city);
-                    }
+                    //if (dc.Cities.Any(x => x.CityName == city.CityName))
+                    //{
+                    //    ViewBag.DuplicateMessage = "CityName already exist.";
+                    //    return View(city);
+                    //}
                     dc.Cities.Add(city);
                     dc.SaveChanges();
                 }

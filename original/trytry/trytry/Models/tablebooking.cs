@@ -11,77 +11,27 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel;
-
+    
     public partial class tablebooking
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tablebooking()
+        {
+            this.bookingtables = new HashSet<bookingtable>();
+        }
+    
         public int TableId { get; set; }
-
-
-
-        [DisplayName("CityName")]
-        [Required(ErrorMessage = "CityName is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
-
-
         public string CityName { get; set; }
-
-
-        [DisplayName("HallName")]
-        [Required(ErrorMessage = "HallName is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
-
-
         public string HallName { get; set; }
-
-
-        [DisplayName("address")]
-        [Required(ErrorMessage = "address is required.")]
-        [StringLength(150)]
-        [DataType(DataType.PostalCode)]
         public string address { get; set; }
-
-
-        [Required]
         public Nullable<int> personno { get; set; }
-
-
-
-        [DisplayName("Date")]
-        [Required(ErrorMessage = "Date is required.")]
-        [StringLength(50)]
-        [DataType(DataType.DateTime)]
-
         public Nullable<System.DateTime> date { get; set; }
-
-
-        [DisplayName("startTime")]
-        [Required(ErrorMessage = "starttime is required.")]
-        [StringLength(50)]
-        [DataType(DataType.DateTime)]
         public Nullable<System.TimeSpan> starttime { get; set; }
-
-
-        [DisplayName("endTime")]
-        [Required(ErrorMessage = "endtime is required.")]
-        [StringLength(50)]
-        [DataType(DataType.DateTime)]
         public Nullable<System.TimeSpan> endtime { get; set; }
-
-
-
-        [DisplayName("budget")]
-        [Required(ErrorMessage = "budget is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Currency)]
-
         public Nullable<int> budget { get; set; }
-
-
-        [Required]
         public byte[] image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bookingtable> bookingtables { get; set; }
     }
 }

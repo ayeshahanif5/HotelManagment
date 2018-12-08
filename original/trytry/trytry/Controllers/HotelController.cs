@@ -6,27 +6,21 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using trytry.Models;
+using System.IO;
+using System.Data.Entity.Infrastructure;
 
 namespace trytry.Controllers
 {
     public class HotelController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities6 dc = new hotelEntities6();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from hotel";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-                
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            List<hoteladmin> lists = new List<hoteladmin>();
+            lists = dc.hoteladmins.ToList();
+            return View(lists);
         }
 
       
@@ -34,33 +28,38 @@ namespace trytry.Controllers
         // GET: Hotel/Create
         public ActionResult Create()
         {
-            return View(new hotel());
+            return View();
         }
 
         // POST: Hotel/Create
         [HttpPost]
-        public ActionResult Create(hotel hotelmodel)
+        public ActionResult Create(hoteladmin room)
         {
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            try
             {
-                con.Open();
-                string query = "insert into hotel(CityName,hotelname,address,facilities,budget,avaliablerooms) values (@CityName,@hotelname,@address,@facilities,@budget,@avaliablerooms)";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CityName", hotelmodel.CityName);
-                cmd.Parameters.AddWithValue("@hotelname",hotelmodel.hotelname);
+                string filename = Path.GetFileNameWithoutExtension(room.ImageFile.FileName);
+                string extension = Path.GetExtension(room.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                room.image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                room.ImageFile.SaveAs(filename);
+                using (hotelEntities6 dc = new hotelEntities6())
+                {
+                    dc.hoteladmins.Add(room);
+                    dc.SaveChanges();
+                }
 
-                cmd.Parameters.AddWithValue("@address",hotelmodel.address);
-                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
-                cmd.Parameters.AddWithValue("@facilities", hotelmodel.facilities);
-               
-                cmd.Parameters.AddWithValue("@budget", hotelmodel.budget);
-                cmd.Parameters.AddWithValue("@avaliablerooms", hotelmodel.avaliablerooms);
-                cmd.ExecuteNonQuery();
-                //}   // TODO: Add insert logic here
-                con.Close();
-
-                return RedirectToAction("Index");
             }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Successful";
+            return RedirectToAction("Index");
+
+
         }
 
         // GET: Hotel/Edit/5
@@ -108,7 +107,7 @@ namespace trytry.Controllers
                 cmd.Parameters.AddWithValue("@hotelname", hotelmodel.hotelname);
 
                 cmd.Parameters.AddWithValue("@address", hotelmodel.address);
-                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
                 cmd.Parameters.AddWithValue("@facilities", hotelmodel.facilities);
 
                 cmd.Parameters.AddWithValue("@budget", hotelmodel.budget);

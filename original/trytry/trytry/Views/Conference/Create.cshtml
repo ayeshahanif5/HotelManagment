@@ -1,22 +1,23 @@
-﻿@model trytry.Models.conference
+﻿@model trytry.Models.conferenceadmin
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_mytemplate.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Conference", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>conference</h4>
+        <h4>conferenceadmin</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
+
         <div class="form-group">
             @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -41,7 +42,15 @@
             </div>
         </div>
 
-      
+       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fooditems, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fooditems, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fooditems, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.capacity, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -70,6 +79,13 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required />
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -81,6 +97,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

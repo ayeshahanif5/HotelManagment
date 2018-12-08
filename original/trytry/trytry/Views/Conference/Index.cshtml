@@ -1,49 +1,44 @@
-﻿@model System.Data.DataTable
+﻿@model IEnumerable<trytry.Models.conferenceadmin>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_mytemplate.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>City Name</th>
-
-        <th>
-            Hall Name
-        </th>
-        
-        <th>
-            Facilities
-        </th>
-
-        <th>
-           Capacity
-        </th>
-        <th>
-            Budget
-        </th>
-        <th>
-            Address
-        </th>
-        <th></th>
-    </tr>
-    @for (int i = 0; i < Model.Rows.Count; i++)
+<div>
+    <h4>Conference Hall</h4>
+    <hr />
+    @foreach (var item in Model)
     {
-        <tr>
-            <td>@Model.Rows[i][1]</td>
-            <td>@Model.Rows[i][2]</td>
-            <td>@Model.Rows[i][3]</td>
-            <td>@Model.Rows[i][6]</td>
-            @*<td>@Model.Rows[i][6]</td>*@
-            <td>@Model.Rows[i][9]</td>
-            <td>@Model.Rows[i][10]</td>
+        <div>
+            <div>
 
-            <td>
-                <a href="@Url.Action("Edit", "Conference", new {@id=@Model.Rows[i][0]})">Edit</a>
-                <a href="@Url.Action("Delete", "Conference", new {@id=@Model.Rows[i][0]})">Delete</a>
-            </td>
-        </tr>
+                @*  @Html.ActionLink(@item.CityName,"Details",new { id=item.CityId})*@
+                <h3>@item.CityName</h3>
+                <h3>@item.HallName</h3>
+                <h3>@item.facilities</h3>
+                <h3>@item.fooditems</h3>
+                <h3>@item.capacity</h3>
+                <h3>@item.budget</h3>
+                <h3>@item.address</h3>
+
+
+            </div>
+            <div>
+                <img src=" @Url.Content(item.image) " height=" 350" width="250" />
+            </div>
+
+
+
+            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.HallId })` </p></div>
+            <div><p>@Html.ActionLink("Delete", "Delete", new { id = item.HallId })</p></div>
+        </div>
     }
-</table>
-<a href="@Url.Action("Create","Conference")">Add Conference Hall</a>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.CityId })*@
+    @Html.ActionLink("Add Conference Hall", "Create")
+</p>
+
+
+
 

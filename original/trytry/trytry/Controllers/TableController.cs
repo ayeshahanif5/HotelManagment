@@ -6,26 +6,20 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using trytry.Models;
+using System.IO;
+using System.Data.Entity.Infrastructure;
 
 namespace trytry.Controllers
 {
     public class TableController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities6 dc = new hotelEntities6();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from tablebooking";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            List<tableadmin> lists = new List<tableadmin>();
+            lists = dc.tableadmins.ToList();
+            return View(lists);
         }
 
        
@@ -33,32 +27,38 @@ namespace trytry.Controllers
         // GET: Table/Create
         public ActionResult Create()
         {
-            return View(new tablebooking());
+            return View();
         }
 
         // POST: Table/Create
         [HttpPost]
-        public ActionResult Create(tablebooking tablemodel)
+        public ActionResult Create(tableadmin tablemodel)
         {
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            try
             {
-                con.Open();
-                string query = "insert into tablebooking(CityName,HallName,address) values (@CityName,@HallName,@address)";
-                SqlCommand cmd = new SqlCommand(query, con);
+                string filename = Path.GetFileNameWithoutExtension(tablemodel.ImageFile.FileName);
+                string extension = Path.GetExtension(tablemodel.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                tablemodel.image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                tablemodel.ImageFile.SaveAs(filename);
+                using (hotelEntities6 dc = new hotelEntities6())
+                {
 
-                cmd.Parameters.AddWithValue("@CityName", tablemodel.CityName);
+                    dc.tableadmins.Add(tablemodel);
+                    dc.SaveChanges();
+                }
 
-                cmd.Parameters.AddWithValue("@HallName", tablemodel.HallName);
-                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
-                cmd.Parameters.AddWithValue("@address", tablemodel.address);
-
-               
-                cmd.ExecuteNonQuery();
-                //}   // TODO: Add insert logic here
-                con.Close();
-
-                return RedirectToAction("Index");
             }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Successful";
+            return RedirectToAction("Index");
+
         }
 
         // GET: Table/Edit/5

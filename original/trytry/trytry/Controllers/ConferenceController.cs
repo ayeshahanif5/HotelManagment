@@ -6,66 +6,65 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using trytry.Models;
+using System.IO;
+using System.Data.Entity.Infrastructure;
+
 namespace trytry.Controllers
 {
     public class ConferenceController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities6 dc = new hotelEntities6();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from conference";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+            List<conferenceadmin> lists = new List<conferenceadmin>();
+            lists = dc.conferenceadmins.ToList();
+            return View(lists);
 
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
         }
 
        
         // GET: Conference/Create
         public ActionResult Create()
         {
-            return View(new conference());
+            return View();
         }
 
         // POST: Conference/Create
         [HttpPost]
-        public ActionResult Create(conference conferencemodel)
+        public ActionResult Create(conferenceadmin conferencemodel)
         {
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            try
             {
-                con.Open();
-                string query = "insert into conference(CityName,HallName,facilities,capacity,budget,address) values(@CityName,@HallName,@facilities,@capacity,@budget,@address)";
-                SqlCommand cmd = new SqlCommand(query, con);
+                string filename = Path.GetFileNameWithoutExtension(conferencemodel.ImageFile.FileName);
+                string extension = Path.GetExtension(conferencemodel.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                conferencemodel.image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                conferencemodel.ImageFile.SaveAs(filename);
+                using (hotelEntities6 dc = new hotelEntities6())
+                {
+                    
+                    dc.conferenceadmins.Add(conferencemodel);
+                    dc.SaveChanges();
+                }
 
-                cmd.Parameters.AddWithValue("@CityName", conferencemodel.CityName);
-
-                cmd.Parameters.AddWithValue("@HallName", conferencemodel.HallName);
-                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
-                cmd.Parameters.AddWithValue("@facilities", conferencemodel.facilities);
-                cmd.Parameters.AddWithValue("@capacity", conferencemodel.capacity);
-
-                cmd.Parameters.AddWithValue("@budget", conferencemodel.budget);
-                cmd.Parameters.AddWithValue("@address", conferencemodel.address);
-                cmd.ExecuteNonQuery();
-                //}   // TODO: Add insert logic here
-                con.Close();
-
-                return RedirectToAction("Index");
             }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Successful";
+            return RedirectToAction("Index");
         }
 
         // GET: Conference/Edit/5
         public ActionResult Edit(int id)
         {
-            conference conferencemodel = new conference();
+            conferenceadmin conferencemodel = new conferenceadmin();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -99,7 +98,7 @@ namespace trytry.Controllers
 
         // POST: Conference/Edit/5
         [HttpPost]
-        public ActionResult Edit(conference conferencemodel)
+        public ActionResult Edit(conferenceadmin conferencemodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -126,7 +125,7 @@ namespace trytry.Controllers
         // GET: Conference/Delete/5
         public ActionResult Delete(int id)
         {
-            conference conferencemodel = new conference();
+            conferenceadmin conferencemodel = new conferenceadmin();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {

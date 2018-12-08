@@ -13,22 +13,14 @@ namespace trytry.Controllers
 {
     public class WeddingController : Controller
     {
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities6 dc = new hotelEntities6();
+        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from wedding1";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            List<wedding1> lists = new List<wedding1>();
+            lists = dc.wedding1.ToList();
+            return View(lists);
         }
 
 
@@ -36,53 +28,41 @@ namespace trytry.Controllers
         // GET: Wedding/Create
         public ActionResult Create()
         {
-            return View(new wedding1());
+            return View();
         }
 
         // POST: Wedding/Create
         [HttpPost]
-        public ActionResult Create(wedding1 weddingmodel, HttpPostedFileBase image1)
+        public ActionResult Create(wedding1 weddingmodel)
         {
-            //if (image1 != null)
-            //{
-            //    weddingmodel.image = new byte[image1.ContentLength];
-
-            //    image1.InputStream.Read(weddingmodel.image, 0, image1.ContentLength);
-
-            //}
-            using (SqlConnection con = new SqlConnection(connectionstring))
+            try
             {
-                con.Open();
-                string query = "insert into wedding1(CityName,HallName,facilities,capacity,budget,address) values (@CityName,@HallName,@facilities,@capacity,@budget,@address)";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@CityName", weddingmodel.CityName);
-                cmd.Parameters.AddWithValue("@HallName", weddingmodel.HallName);
-                cmd.Parameters.AddWithValue("@facilities", weddingmodel.facilities);
-                cmd.Parameters.AddWithValue("@capacity", weddingmodel.capacity);
-                cmd.Parameters.AddWithValue("@budget", weddingmodel.budget);
-                cmd.Parameters.AddWithValue("@address", weddingmodel.address);
-               
+                string filename = Path.GetFileNameWithoutExtension(weddingmodel.ImageFile.FileName);
+                string extension = Path.GetExtension(weddingmodel.ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                weddingmodel.image = "~/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("~/Image/"), filename);
+                weddingmodel.ImageFile.SaveAs(filename);
+                using (hotelEntities6 dc = new hotelEntities6())
+                {
 
+                    dc.wedding1.Add(weddingmodel);
+                    dc.SaveChanges();
+                }
 
-                cmd.ExecuteNonQuery();
-                con.Close();
             }
+            catch (Exception ex)
+            {
+                return View(ex);
+
+            }
+            ModelState.Clear();
+            ViewBag.SuccessMessage = "Successful";
             return RedirectToAction("Index");
+
         }
 
-        //public ActionResult AddnewWeddingHall()
-        //{
-        //    return View();
-        //}
-
-        //public ActionResult SaveData(wedding1 weddding)
-        //{
-        //    if(weddding.CityName != null && weddding.HallName !=null && weddding.address != null && weddding.budget != null && weddding.capacity !=null && weddding.image != null)
-        //    {
-        //        string filename = Path.GetFileNameWithoutExtension(weddding.image.fil);
-        //        string extension = Path.get
-        //    }
-        //}
+       
         // GET: Wedding/Edit/5
         public ActionResult Edit(int id)
         {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="556bf4c101b64847a24442c59d3f0fab" Name="Diagram1">
+        <EntityTypeShape EntityType="hotelModel1.bookingtable" Width="1.5" PointX="10" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.c" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.City" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.conference" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.conferenceadmin" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.conferencebooking" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.ContactU" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.hotel" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.hoteladmin" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.Login" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.roombooking2" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.roombookingsssssss" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.Sign_In" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.tableadmin" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.tablebooking" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.wedding1" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel1.weddingbooking" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="hotelModel1.FK_bookingtable_tablebooking" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel1.FK_hotel_City" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel1.FK_conferencebooking_conference" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel1.FK_roombooking_hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel1.FK_roombooking2_hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel1.FK_weddingbooking_wedding1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

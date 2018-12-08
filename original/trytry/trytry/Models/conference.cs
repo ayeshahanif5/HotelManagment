@@ -11,80 +11,28 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel;
-
-
+    
     public partial class conference
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public conference()
+        {
+            this.conferencebookings = new HashSet<conferencebooking>();
+        }
+    
         public int HallId { get; set; }
-
-
-
-        [DisplayName("CityName")]
-        [Required(ErrorMessage = "CityName is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
-
         public string CityName { get; set; }
-
-
-
-        [DisplayName("HallName")]
-        [Required(ErrorMessage = "HallName is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
         public string HallName { get; set; }
-
-
-
-        [DisplayName("facilities")]
-        [Required(ErrorMessage = "facilities is required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
         public string facilities { get; set; }
-
-
         public byte[] image { get; set; }
-
-
-
-        [DisplayName("FoodItems")]
-        [Required(ErrorMessage = "FoodItems are required.")]
-        [StringLength(50)]
-        [DataType(DataType.Text)]
         public string fooditems { get; set; }
-
-        [DisplayName("capacity")]
-        [Required(ErrorMessage = "capacity is required.")]
-      
-
         public Nullable<int> capacity { get; set; }
-
-
-        [DisplayName("Date")]
-        [Required(ErrorMessage = "Date is required.")]
-      
-        [DataType(DataType.DateTime)]
         public string date { get; set; }
-
-        [DisplayName("Time")]
-        [Required(ErrorMessage = "time is required.")]
-        
-        [DataType(DataType.DateTime)]
         public string time { get; set; }
-
-
-        [DisplayName("budget")]
-        [Required(ErrorMessage = "budget is required.")]
-       
-        [DataType(DataType.Currency)]
         public Nullable<int> budget { get; set; }
-
-        [DisplayName("address")]
-        [Required(ErrorMessage = "address is required.")]
-        [StringLength(150)]
-        [DataType(DataType.PostalCode)]
         public string address { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<conferencebooking> conferencebookings { get; set; }
     }
 }
