@@ -12,18 +12,18 @@
             Image
         </th>
 
-       
+
         <th></th>
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
     {
         <tr>
             <td>@Model.Rows[i][1]</td>
-            <td><img src="@Model.Rows[i][2]"  height=" 350" width="250" /></td>
-            
+            <td><img src="@Model.Rows[i][2]" height=" 350" width="250" /></td>
+
 
             <td>
-                <a href="@Url.Action("SHOW_HOTEL", "Home", new {@cityname=@Model.Rows[i][1]})">Show</a>
+                <a href="@Url.Action("SHOW_conference", "Home", new {@cityname=@Model.Rows[i][1]})">Show</a>
             </td>
         </tr>
     }

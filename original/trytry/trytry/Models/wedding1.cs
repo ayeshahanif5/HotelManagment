@@ -53,25 +53,25 @@ namespace trytry.Models
 
 
         [Required(ErrorMessage = "capacity is required.")]
-        [StringLength(50)]
+      
         public Nullable<int> capacity { get; set; }
 
         [DisplayName("Date")]
         [Required(ErrorMessage = "Date is required.")]
-        [StringLength(50)]
+ 
         [DataType(DataType.DateTime)]
         public Nullable<System.DateTime> date { get; set; }
 
         [DisplayName("Time")]
         [Required(ErrorMessage = "time is required.")]
-        [StringLength(50)]
+
         [DataType(DataType.DateTime)]
         public Nullable<System.TimeSpan> time { get; set; }
 
 
         [DisplayName("budget")]
         [Required(ErrorMessage = "budget is required.")]
-        [StringLength(50)]
+     
         [DataType(DataType.Currency)]
         public Nullable<int> budget { get; set; }
 

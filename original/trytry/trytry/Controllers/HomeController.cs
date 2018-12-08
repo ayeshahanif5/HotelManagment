@@ -40,7 +40,225 @@ namespace trytry.Controllers
 
             return View();
         }
+        [HttpGet]
+       public ActionResult Book_Now()
+        {
+            return View(new roombooking());
+        }
+        [HttpPost]
+        public ActionResult Book_Now(roombooking room,int HotelId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                //DateTime da = DateTime.Now;
+                //string date = da.ToString("dd/MM/YYYY");
+                con.Open();
+                string query = "insert into roombooking2(HotellId,Name,Phoneno,Address,checkindate,checkoutdate) values('"+HotelId+"',@Name,@Phoneno,@Address,@checkindate,@checkoutdate)";
+                SqlCommand cmd = new SqlCommand(query, con);
+               // cmd.Parameters.AddWithValue("@HotelId", HotelId);
+                cmd.Parameters.AddWithValue("@Name", room.Name);
+
+                cmd.Parameters.AddWithValue("@Phoneno", room.Phoneno);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@Address", room.Address);
+                cmd.Parameters.AddWithValue("@checkindate", room.checkindate);
+
+                cmd.Parameters.AddWithValue("@checkoutdate", room.checkoutdate);
+
+              cmd.ExecuteNonQuery();
+                //}   // TODO: Add insert logic here
+                con.Close();
+
+                return RedirectToAction("Index");
+            }
+
+                
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Book_Conference()
+        {
+            return View(new conferencebooking());
+        }
+        [HttpPost]
+        public ActionResult Book_Conference(conferencebooking conference, int HotelId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                //DateTime da = DateTime.Now;
+                //string date = da.ToString("dd/MM/YYYY");
+                con.Open();
+                string query = "insert into conferencebooking(HallId,Name,Address,[Phone No],Noofpeople,Time,checkindate,checkoutdate) values('" + HotelId + "',@Name,@Address,@Phone_No,@Noofpeople,@Time,@checkindate,@checkoutdate)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                // cmd.Parameters.AddWithValue("@HotelId", HotelId);
+                cmd.Parameters.AddWithValue("@Name", conference.Name);
+
+                cmd.Parameters.AddWithValue("@Address", conference.Address);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@Phone_No", conference.Phone_No);
+                cmd.Parameters.AddWithValue("@Noofpeople", conference.Noofpeople);
+                cmd.Parameters.AddWithValue("@Time", conference.Time);
+                cmd.Parameters.AddWithValue("@checkindate", conference.checkindate);
+
+                cmd.Parameters.AddWithValue("@checkoutdate", conference.checkoutdate);
+
+                cmd.ExecuteNonQuery();
+                //}   // TODO: Add insert logic here
+                con.Close();
+
+                return RedirectToAction("Index");
+            }
+
+
+        }
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult Book_wedding()
+        {
+            return View(new weddingbooking());
+        }
+        [HttpPost]
+        public ActionResult Book_wedding(weddingbooking wedding, int HotelId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                //DateTime da = DateTime.Now;
+                //string date = da.ToString("dd/MM/YYYY");
+                con.Open();
+                string query = "insert into weddingbooking(HallId,Name,Address,[Phone No],Noofpeople,Time,checkindate,checkoutdate) values('" + HotelId + "',@Name,@Address,@Phone_No,@Noofpeople,@Time,@checkindate,@checkoutdate)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                // cmd.Parameters.AddWithValue("@HotelId", HotelId);
+                cmd.Parameters.AddWithValue("@Name", wedding.Name);
+
+                cmd.Parameters.AddWithValue("@Address", wedding.Address);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@Phone_No", wedding.Phone_No);
+                cmd.Parameters.AddWithValue("@Noofpeople", wedding.Noofpeople);
+                cmd.Parameters.AddWithValue("@Time", wedding.Time);
+                cmd.Parameters.AddWithValue("@checkindate", wedding.checkindate);
+
+                cmd.Parameters.AddWithValue("@checkoutdate", wedding.checkoutdate);
+
+                cmd.ExecuteNonQuery();
+                //}   // TODO: Add insert logic here
+                con.Close();
+
+                return RedirectToAction("Index");
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public ActionResult Book_table()
+        {
+            return View(new bookingtable());
+        }
+        [HttpPost]
+        public ActionResult Book_table(bookingtable table, int HotelId)
+        {
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                //DateTime da = DateTime.Now;
+                //string date = da.ToString("dd/MM/YYYY");
+                con.Open();
+                string query = "insert into bookingtable(TableId,Name,Address,[Phone No],personno,Time,checkindate) values('" + HotelId + "',@Name,@Address,@Phone_No,@personno,@Time,@checkindate)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                // cmd.Parameters.AddWithValue("@HotelId", HotelId);
+                cmd.Parameters.AddWithValue("@Name", table.Name);
+
+                cmd.Parameters.AddWithValue("@Address", table.Address);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                cmd.Parameters.AddWithValue("@Phone_No", table.Phone_No);
+                cmd.Parameters.AddWithValue("@personno", table.personno);
+                cmd.Parameters.AddWithValue("@Time", table.Time);
+                cmd.Parameters.AddWithValue("@checkindate", table.checkindate);
+
+                
+
+                cmd.ExecuteNonQuery();
+                //}   // TODO: Add insert logic here
+                con.Close();
+
+                return RedirectToAction("Index");
+            }
+
+
+        }
+
+
+
+
+
         public ActionResult Cities()
+        {
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from City";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
+
+        public ActionResult Cities_wedding()
+        {
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from City";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
+
+        public ActionResult Cities_conference()
+        {
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from City";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
+
+        public ActionResult Cities_table()
         {
 
             DataTable dt = new DataTable();
@@ -151,8 +369,8 @@ namespace trytry.Controllers
             {
 
                 ViewData["Success"] = "Correct Email and Passowrd";
-                return RedirectToAction("Index");
-                
+                return RedirectToAction("Cities","Home");
+
             }
             else if(signin.Email == "admin123@gmail.com" && signin.Password == "123")
             {
@@ -186,6 +404,55 @@ namespace trytry.Controllers
             }
             return View(dt);
         }
+
+        public ActionResult SHOW_Wedding(string cityname)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from wedding1 where CityName = '" + cityname + "';";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
+
+
+        public ActionResult SHOW_conference(string cityname)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from conference where CityName = '" + cityname + "';";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
+
+        public ActionResult SHOW_table(string cityname)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionstring))
+            {
+                con.Open();
+                string query = "Select * from tablebooking where CityName = '" + cityname + "';";
+                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+
+                ada.Fill(dt);
+                con.Close();
+
+            }
+            return View(dt);
+        }
         //[HttpGet]
         //public act
         //[HttpPost]
@@ -198,10 +465,10 @@ namespace trytry.Controllers
 
 
 
-            
-            
+
+
         //}
-            [HttpPost]
+        [HttpPost]
         public ActionResult SHOW_CONFERENCE_HALL(int id)
         {
             //DataTable dt = new DataTable();

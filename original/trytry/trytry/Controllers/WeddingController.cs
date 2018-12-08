@@ -53,7 +53,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "insert into wedding1(CityName,HallName,facilities,capacity,budget,address,image) values (@CityName,@HallName,@facilities,@capacity,@budget,@address,@image)";
+                string query = "insert into wedding1(CityName,HallName,facilities,capacity,budget,address) values (@CityName,@HallName,@facilities,@capacity,@budget,@address)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@CityName", weddingmodel.CityName);
                 cmd.Parameters.AddWithValue("@HallName", weddingmodel.HallName);
@@ -61,7 +61,7 @@ namespace trytry.Controllers
                 cmd.Parameters.AddWithValue("@capacity", weddingmodel.capacity);
                 cmd.Parameters.AddWithValue("@budget", weddingmodel.budget);
                 cmd.Parameters.AddWithValue("@address", weddingmodel.address);
-                cmd.Parameters.AddWithValue("@address", weddingmodel.image);
+               
 
 
                 cmd.ExecuteNonQuery();

@@ -17,6 +17,8 @@ namespace trytry.Models
         [DataType(DataType.Text)]
         public string hotelname { get; set; }
 
+       
+
 
         public string CityName { get; set; }
         [DisplayName("address")]

@@ -25,18 +25,26 @@
 
         </th>
 
+        <th>
+            <p>Capacity</p>
+
+        </th>
+
         <th></th>
 
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
     {
         <tr>
-            
+
             <td>@Model.Rows[i][2]</td>
+
+            <td>@Model.Rows[i][10]</td>
             <td>@Model.Rows[i][3]</td>
-            <td>@Model.Rows[i][5]</td>
-            <td>@Model.Rows[i][7]</td>
-            <td><a href="@Url.Action("Book_Now", "Home", new {@HotelId=@Model.Rows[i][0]})">Book Now</a></td>
+            <td>@Model.Rows[i][6]</td>
+            <td>@Model.Rows[i][9]</td>
+
+            <td><a href="@Url.Action("Book_Conference", "Home", new {@HotelId=@Model.Rows[i][0]})">Book Now</a></td>
         </tr>
         @*<tr><a href="@Url.Action("Book_Now", "Home", new {@hotelname=@Model.Rows[i][2]})">Hotels</a></tr>*@
     }
