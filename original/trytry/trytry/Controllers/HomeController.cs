@@ -12,7 +12,7 @@ namespace trytry.Controllers
 {
     public class HomeController : Controller
     {
-        hotelEntities5 dc = new hotelEntities5();
+        hotelEntities7 dc = new hotelEntities7();
         string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         private object db;
         public ActionResult Index()
@@ -206,22 +206,21 @@ namespace trytry.Controllers
 
 
 
-
         public ActionResult Cities()
         {
 
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from City";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
+            //DataTable dt = new DataTable();
+            //using (SqlConnection con = new SqlConnection(connectionstring))
+            //{
+            //    con.Open();
+            //    string query = "Select * from City";
+            //    SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
-                ada.Fill(dt);
-                con.Close();
+            //    ada.Fill(dt);
+            //    con.Close();
 
-            }
-            return View(dt);
+            //}
+            return View(dc.Cities.ToList());
         }
 
         public ActionResult Cities_wedding()
@@ -378,7 +377,10 @@ namespace trytry.Controllers
 
             }
            
-            
+            else
+            {
+                ViewData["Error"] = "Incorrect Email and Password";
+            }
             
             //else
             //{
@@ -395,7 +397,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from hotel where CityName = '"+cityname+"';";
+                string query = "Select * from hoteladmin1 where CityName = '"+cityname+"';";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
                 ada.Fill(dt);
@@ -428,7 +430,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from conference where CityName = '" + cityname + "';";
+                string query = "Select * from conferenceadmin1 where CityName = '" + cityname + "';";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
                 ada.Fill(dt);
@@ -444,7 +446,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from tablebooking where CityName = '" + cityname + "';";
+                string query = "Select * from tableadmin1 where CityName = '" + cityname + "';";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
 
                 ada.Fill(dt);

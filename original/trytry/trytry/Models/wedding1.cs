@@ -12,15 +12,14 @@ namespace trytry.Models
     using System;
     using System.Collections.Generic;
     using System.Web;
-    
     public partial class wedding1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public wedding1()
         {
             this.weddingbookings = new HashSet<weddingbooking>();
+            this.weddingbookings1 = new HashSet<weddingbooking>();
         }
-    
         public HttpPostedFileBase ImageFile { get; set; }
         public int HallId { get; set; }
         public string CityName { get; set; }
@@ -36,5 +35,7 @@ namespace trytry.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<weddingbooking> weddingbookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<weddingbooking> weddingbookings1 { get; set; }
     }
 }

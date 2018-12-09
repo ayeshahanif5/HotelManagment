@@ -1,37 +1,38 @@
 ﻿@model IEnumerable<trytry.Models.wedding1>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
-<div>
-    <h4>Wedding Hall</h4>
-    <hr />
+<div class="container">
+    <h2 class="text-center">Wedding Hall</h2>
     @foreach (var item in Model)
     {
-        <div>
-            <div>
-
-                @*  @Html.ActionLink(@item.CityName,"Details",new { id=item.CityId})*@
-                <h3>@item.CityName</h3>
-                <h3>@item.HallName</h3>
-                <h3>@item.facilities</h3>
-                <h3>@item.fooditems</h3>
-                <h3>@item.capacity</h3>
-                <h3>@item.budget</h3>
-                <h3>@item.address</h3>
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <h2 class="text-center">@item.CityName</h2>
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h2>@item.HallName</h2>
+                    
+                    <h4>Address:@item.address</h4>
+                    <h5>Price per person:@item.budget $</h5>
+                    <h6>Capacity:@item.capacity</h6>
+                    <h7>Food:@item.fooditems</h7>
+                    <h8>Facilities:@item.facilities</h8>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.HallId })`
+                        @Html.ActionLink("Delete", "Delete", new { id = item.HallId })
+                    </p>
+                </div>
 
             </div>
-            <div>
-                <img src=" @Url.Content(item.image) " height=" 350" width="250" />
-            </div>
-
-
-
-            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.HallId })` </p></div>
-            <div><p>@Html.ActionLink("Delete", "Delete", new { id = item.HallId })</p></div>
         </div>
     }
 </div>
+
+    
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.CityId })*@
     @Html.ActionLink("Add Wedding Hall", "Create")

@@ -1,8 +1,44 @@
 ﻿@model System.Data.DataTable
+@*@model IEnumerable<trytry.Models.hoteladmin1>*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
+
+
+@*<div class="container">
+    <h2 class="text-center">Hotels</h2>
+    @foreach (var item in Model)
+    {
+        double Budget = Convert.ToInt32(@item.budget);
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h3><a href="@Url.Action("SHOW_HOTEL", "Home", new {@cityname=@item.HotelId})">@item.hotelname</a></h3>
+                    <h4>@item.address</h4>
+                    <h5>@item.facilities</h5>
+                    <h6>Budget.ToString("F2")$</h6>
+                </div>
+            </div>
+        </div>
+    }
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <table class="table table-bordered table-striped">
     <tr>
@@ -24,23 +60,21 @@
             <p>Budget</p>
 
         </th>
-
+        <th>Image</th>
         <th></th>
 
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
     {
         <tr>
-            
+
             <td>@Model.Rows[i][2]</td>
             <td>@Model.Rows[i][3]</td>
             <td>@Model.Rows[i][5]</td>
             <td>@Model.Rows[i][7]</td>
+         
             <td><a href="@Url.Action("Book_Now", "Home", new {@HotelId=@Model.Rows[i][0]})">Book Now</a></td>
         </tr>
         @*<tr><a href="@Url.Action("Book_Now", "Home", new {@hotelname=@Model.Rows[i][2]})">Hotels</a></tr>*@
     }
 </table>
-
-
-

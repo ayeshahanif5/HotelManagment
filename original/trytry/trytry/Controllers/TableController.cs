@@ -13,12 +13,12 @@ namespace trytry.Controllers
 {
     public class TableController : Controller
     {
-        hotelEntities6 dc = new hotelEntities6();
-        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities7 dc = new hotelEntities7();
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         public ActionResult Index()
         {
-            List<tableadmin> lists = new List<tableadmin>();
-            lists = dc.tableadmins.ToList();
+            List<tableadmin1> lists = new List<tableadmin1>();
+            lists = dc.tableadmin1.ToList();
             return View(lists);
         }
 
@@ -32,7 +32,7 @@ namespace trytry.Controllers
 
         // POST: Table/Create
         [HttpPost]
-        public ActionResult Create(tableadmin tablemodel)
+        public ActionResult Create(tableadmin1 tablemodel)
         {
             try
             {
@@ -42,10 +42,10 @@ namespace trytry.Controllers
                 tablemodel.image = "~/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Image/"), filename);
                 tablemodel.ImageFile.SaveAs(filename);
-                using (hotelEntities6 dc = new hotelEntities6())
+                using (hotelEntities7 dc = new hotelEntities7())
                 {
 
-                    dc.tableadmins.Add(tablemodel);
+                    dc.tableadmin1.Add(tablemodel);
                     dc.SaveChanges();
                 }
 
@@ -64,12 +64,12 @@ namespace trytry.Controllers
         // GET: Table/Edit/5
         public ActionResult Edit(int id)
         {
-            tablebooking tablemodel = new tablebooking();
+            tableadmin1 tablemodel = new tableadmin1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from tablebooking where TableId = @TableId";
+                string query = "Select * from tableadmin1 where TableId = @TableId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@TableId", id);
                 ada.Fill(dt);
@@ -93,12 +93,12 @@ namespace trytry.Controllers
 
         // POST: Table/Edit/5
         [HttpPost]
-        public ActionResult Edit(tablebooking tablemodel)
+        public ActionResult Edit(tableadmin1 tablemodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Update tablebooking set HallName = @HallName, address = @address, CityName = @CityName where TableId = @TableId";
+                string query = "Update tableadmin1 set HallName = @HallName, address = @address, CityName = @CityName where TableId = @TableId";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@TableId", tablemodel.TableId);
 
@@ -118,12 +118,12 @@ namespace trytry.Controllers
         // GET: Table/Delete/5
         public ActionResult Delete(int id)
         {
-            tablebooking tablemodel = new tablebooking();
+            tableadmin1 tablemodel = new tableadmin1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from tablebooking where TableId = @TableId";
+                string query = "Select * from tableadmin1 where TableId = @TableId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@TableId", id);
                 ada.Fill(dt);
@@ -152,7 +152,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Delete From tablebooking where TableId = @TableId";
+                string query = "Delete From tableadmin1 where TableId = @TableId";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@TableId", id);
 

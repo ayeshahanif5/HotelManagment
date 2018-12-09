@@ -1,30 +1,25 @@
 ﻿@model IEnumerable<trytry.Models.City>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<div>
-    <h4>City</h4>
-    <hr />
+<div class="container">
+    <h2 class="text-center">Cities</h2>
     @foreach (var item in Model)
-    {
-        <div>
-            <div>
-               
-               @*  @Html.ActionLink(@item.CityName,"Details",new { id=item.CityId})*@
-                <h3>@item.CityName</h3>
-              
-
+    {  
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h3>@item.CityName</h3>
+                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.CityId})`
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CityId })</p>
+                </div>
+                
             </div>
-            <div>
-                <img src=" @Url.Content(item.image) " height=" 350" width="250" />
-            </div>
-
-
-           
-            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.CityId })` </p></div>
-            <div><p>@Html.ActionLink("Delete","Delete", new {id = item.CityId })</p></div>
         </div>
     }
 </div>

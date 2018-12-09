@@ -15,9 +15,9 @@ namespace trytry.Models
     
     public partial class City
     {
-        public HttpPostedFileBase ImageFile { get; set; }
         public int CityId { get; set; }
         public string CityName { get; set; }
         public string image { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

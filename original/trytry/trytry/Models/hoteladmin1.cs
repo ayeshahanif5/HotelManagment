@@ -11,10 +11,15 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
-    
-    public partial class hoteladmin
+    public partial class hoteladmin1
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public hoteladmin1()
+        {
+            this.roombooking2 = new HashSet<roombooking2>();
+        }
         public HttpPostedFileBase ImageFile { get; set; }
         public int HotelId { get; set; }
         public Nullable<int> CityId { get; set; }
@@ -25,8 +30,15 @@ namespace trytry.Models
         public string image { get; set; }
         public Nullable<int> budget { get; set; }
         public Nullable<int> avaliablerooms { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
         public string CityName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<roombooking2> roombooking2 { get; set; }
     }
 }

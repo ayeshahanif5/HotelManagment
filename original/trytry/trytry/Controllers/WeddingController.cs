@@ -13,8 +13,8 @@ namespace trytry.Controllers
 {
     public class WeddingController : Controller
     {
-        hotelEntities6 dc = new hotelEntities6();
-        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities7 dc = new hotelEntities7();
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
@@ -43,7 +43,7 @@ namespace trytry.Controllers
                 weddingmodel.image = "~/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Image/"), filename);
                 weddingmodel.ImageFile.SaveAs(filename);
-                using (hotelEntities6 dc = new hotelEntities6())
+                using (hotelEntities7 dc = new hotelEntities7())
                 {
 
                     dc.wedding1.Add(weddingmodel);

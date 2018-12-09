@@ -11,20 +11,31 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
-    
-    public partial class tableadmin
+
+    public partial class tableadmin1
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tableadmin1()
+        {
+            this.bookingtables = new HashSet<bookingtable>();
+        }
         public HttpPostedFileBase ImageFile { get; set; }
         public int TableId { get; set; }
         public string CityName { get; set; }
         public string HallName { get; set; }
         public string address { get; set; }
         public Nullable<int> personno { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> starttime { get; set; }
         public Nullable<System.TimeSpan> endtime { get; set; }
         public Nullable<int> budget { get; set; }
         public string image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bookingtable> bookingtables { get; set; }
     }
 }

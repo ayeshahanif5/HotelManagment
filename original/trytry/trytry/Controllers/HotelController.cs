@@ -13,13 +13,13 @@ namespace trytry.Controllers
 {
     public class HotelController : Controller
     {
-        hotelEntities6 dc = new hotelEntities6();
-        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities7 dc = new hotelEntities7();
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         [HttpGet]
         public ActionResult Index()
         {
-            List<hoteladmin> lists = new List<hoteladmin>();
-            lists = dc.hoteladmins.ToList();
+            List<hoteladmin1> lists = new List<hoteladmin1>();
+            lists = dc.hoteladmin1.ToList();
             return View(lists);
         }
 
@@ -33,7 +33,7 @@ namespace trytry.Controllers
 
         // POST: Hotel/Create
         [HttpPost]
-        public ActionResult Create(hoteladmin room)
+        public ActionResult Create(hoteladmin1 room)
         {
             try
             {
@@ -43,9 +43,9 @@ namespace trytry.Controllers
                 room.image = "~/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Image/"), filename);
                 room.ImageFile.SaveAs(filename);
-                using (hotelEntities6 dc = new hotelEntities6())
+                using (hotelEntities7 dc = new hotelEntities7())
                 {
-                    dc.hoteladmins.Add(room);
+                    dc.hoteladmin1.Add(room);
                     dc.SaveChanges();
                 }
 
@@ -65,26 +65,27 @@ namespace trytry.Controllers
         // GET: Hotel/Edit/5
         public ActionResult Edit(int id)
         {
-            hotel hotelmodel = new hotel();
+            hoteladmin1 hotelmodel = new hoteladmin1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from hotel where hotelid = @hotelid";
+                string query = "Select * from hoteladmin1 where HotelId = @HotelId";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
-                ada.SelectCommand.Parameters.AddWithValue("@Hotelid", id);
+                ada.SelectCommand.Parameters.AddWithValue("@HotelId", id);
                 ada.Fill(dt);
                 con.Close();
             }
             if (dt.Rows.Count == 1)
             {
+                hotelmodel.CityName = dt.Rows[0][11].ToString();
                 hotelmodel.HotelId = Convert.ToInt32(dt.Rows[0][0].ToString());
                 hotelmodel.hotelname = dt.Rows[0][2].ToString();
                 hotelmodel.address = dt.Rows[0][3].ToString();
                 hotelmodel.facilities = dt.Rows[0][5].ToString();
 
                 hotelmodel.budget = Convert.ToInt32(dt.Rows[0][7].ToString());
-                hotelmodel.avaliablerooms = dt.Rows[0][8].ToString();
+                //hotelmodel.avaliablerooms = Convert.ToInt32(dt.Rows[0][8].ToString());
                 return View(hotelmodel);
             }
             else
@@ -95,23 +96,25 @@ namespace trytry.Controllers
 
         // POST: Hotel/Edit/5
         [HttpPost]
-        public ActionResult Edit(hotel hotelmodel)
+        public ActionResult Edit(hoteladmin1 hotelmodel)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Update hotel set hotelname = @hotelname, address = @address, facilities = @facilities, budget = @budget, avaliablerooms = @avaliablerooms where HotelId = @HotelId";
+                string query = "Update hoteladmin1 set CityName = @CityName,hotelname = @hotelname, address = @address, facilities = @facilities, budget = @budget where HotelId = @HotelId";
                 SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@CityName", hotelmodel.CityName);
                 cmd.Parameters.AddWithValue("@HotelId", hotelmodel.HotelId);
 
                 cmd.Parameters.AddWithValue("@hotelname", hotelmodel.hotelname);
 
                 cmd.Parameters.AddWithValue("@address", hotelmodel.address);
-                cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
+                //cmd.Parameters.AddWithValue("@roomtype", hotelmodel.roomtype);
                 cmd.Parameters.AddWithValue("@facilities", hotelmodel.facilities);
 
                 cmd.Parameters.AddWithValue("@budget", hotelmodel.budget);
-                cmd.Parameters.AddWithValue("@avaliablerooms", hotelmodel.avaliablerooms);
+                //cmd.Parameters.AddWithValue("@avaliablerooms", hotelmodel.avaliablerooms);
                 cmd.ExecuteNonQuery();
                 
             }
@@ -122,12 +125,12 @@ namespace trytry.Controllers
         // GET: Hotel/Delete/5
         public ActionResult Delete(int id)
         {
-            hotel hotelmodel = new hotel();
+            hoteladmin1 hotelmodel = new hoteladmin1();
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Select * from hotel where hotelid = @hotelid";
+                string query = "Select * from hoteladmin1 where hotelid = @hotelid";
                 SqlDataAdapter ada = new SqlDataAdapter(query, con);
                 ada.SelectCommand.Parameters.AddWithValue("@Hotelid", id);
                 ada.Fill(dt);
@@ -141,7 +144,7 @@ namespace trytry.Controllers
                 hotelmodel.facilities = dt.Rows[0][5].ToString();
 
                 hotelmodel.budget = Convert.ToInt32(dt.Rows[0][7].ToString());
-                hotelmodel.avaliablerooms = dt.Rows[0][8].ToString();
+              
                 return View(hotelmodel);
             }
             else
@@ -157,7 +160,7 @@ namespace trytry.Controllers
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
                 con.Open();
-                string query = "Delete From hotel where HotelId = @HotelId";
+                string query = "Delete From hoteladmin1 where HotelId = @HotelId";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@HotelId", id);
 

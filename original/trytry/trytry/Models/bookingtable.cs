@@ -11,7 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class bookingtable
     {
         public int BookingId { get; set; }
@@ -20,10 +21,13 @@ namespace trytry.Models
         public string Name { get; set; }
         public Nullable<int> Phone_No { get; set; }
         public string Address { get; set; }
+        [Display(Name="Check In Date")]
+        [DataType(DataType.Date)]
         public string checkindate { get; set; }
         public Nullable<System.TimeSpan> Time { get; set; }
         public Nullable<int> personno { get; set; }
     
+        public virtual tableadmin1 tableadmin1 { get; set; }
         public virtual tablebooking tablebooking { get; set; }
     }
 }

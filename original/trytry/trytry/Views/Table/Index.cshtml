@@ -1,39 +1,34 @@
 ﻿
-@model IEnumerable<trytry.Models.tableadmin>
+@model IEnumerable<trytry.Models.tableadmin1>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<div>
-    <h4>Table</h4>
-    <hr />
+<div class="container">
+    <h2 class="text-center">Cities</h2>
     @foreach (var item in Model)
     {
-        <div>
-            <div>
-
-                @*  @Html.ActionLink(@item.CityName,"Details",new { id=item.CityId})*@
-                <h3>@item.CityName</h3>
-                <h3>@item.HallName</h3>
-                <h3>@item.address</h3>
-                <h3>@item.personno</h3>
-                <h3>@item.CityName</h3>
-                <h3>@item.budget</h3>
-
-
-            </div>
-            <div>
-                <img src=" @Url.Content(item.image) " height=" 350" width="250" />
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <h3 class="text-center">@item.CityName</h3>
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h4>@item.HallName</h4>
+                    <h5>Address:@item.address</h5>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TableId })`
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TableId})
+                </p>
             </div>
 
-
-
-            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.TableId })` </p></div>
-            <div><p>@Html.ActionLink("Delete", "Delete", new { id = item.TableId })</p></div>
         </div>
+    </div>
     }
 </div>
+
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.CityId })*@
     @Html.ActionLink("Add Table", "Create")

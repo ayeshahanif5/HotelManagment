@@ -15,8 +15,8 @@ namespace trytry.Controllers
 {
     public class CityController : Controller
     {
-        hotelEntities6 dc = new hotelEntities6();
-        string connectionstring = @"Data Source=ABDULREHMAN;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities7 dc = new hotelEntities7();
+        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         private object db;
 
         [HttpGet]
@@ -48,7 +48,7 @@ namespace trytry.Controllers
                 city.image = "~/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("~/Image/"), filename);
                 city.ImageFile.SaveAs(filename);
-                using (hotelEntities6 dc = new hotelEntities6())
+                using (hotelEntities7 dc = new hotelEntities7())
                 {
                     //if (dc.Cities.Any(x => x.CityName == city.CityName))
                     //{

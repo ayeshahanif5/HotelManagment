@@ -11,7 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class weddingbooking
     {
         public int BookingId { get; set; }
@@ -20,11 +21,16 @@ namespace trytry.Models
         public string Name { get; set; }
         public Nullable<int> Phone_No { get; set; }
         public string Address { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
+        [Display(Name = "Check out Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
         public Nullable<int> Noofpeople { get; set; }
         public string Time { get; set; }
     
         public virtual wedding1 wedding1 { get; set; }
+        public virtual wedding1 wedding11 { get; set; }
     }
 }

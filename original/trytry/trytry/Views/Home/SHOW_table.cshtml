@@ -17,10 +17,10 @@
 
         </th>
         
-        <th>
+        @*<th>
             <p>Budget</p>
 
-        </th>
+        </th>*@
 
        
 
@@ -35,7 +35,7 @@
 
            
             <td>@Model.Rows[i][3]</td>
-            <td>@Model.Rows[i][8]</td>
+            @*<td>@Model.Rows[i][8]</td>*@
      
 
             <td><a href="@Url.Action("Book_table", "Home", new {@HotelId=@Model.Rows[i][0]})">Book Now</a></td>

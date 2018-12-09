@@ -4,16 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="801c36642682466ead1d6362ed637b44" Name="Diagram1">
-        <EntityTypeShape EntityType="hotelModel.c" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.City" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.conference" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.hotel" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.Login" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.Sign_In" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.tablebooking" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hotelModel.wedding" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="882b4796a04b41cfaf8cafadc0d2110f" Name="Diagram1">
+        <EntityTypeShape EntityType="hotelModel.bookingtable" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.c" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.City" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.conference" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.conferenceadmin1" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.conferencebooking" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.ContactU" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.hotel" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.hoteladmin1" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Login" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.roombooking2" Width="1.5" PointX="13" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.roombookingsssssss" Width="1.5" PointX="10.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.Sign_In" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.sysdiagram" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.tableadmin1" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.tablebooking" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.wedding1" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hotelModel.weddingbooking" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="hotelModel.FK_bookingtable_tableadmin1" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_bookingtable_tablebooking" ManuallyRouted="false" />
         <AssociationConnector Association="hotelModel.FK_hotel_City" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_conferencebooking_conference" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_conferencebooking_conferenceadmin1" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_roombooking_hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_roombooking2_hoteladmin1" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_weddingbooking_wedding1" ManuallyRouted="false" />
+        <AssociationConnector Association="hotelModel.FK_weddingbooking_wedding11" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

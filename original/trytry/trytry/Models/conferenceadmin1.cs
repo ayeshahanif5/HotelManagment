@@ -11,10 +11,16 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
-    
-    public partial class conferenceadmin
+
+    public partial class conferenceadmin1
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public conferenceadmin1()
+        {
+            this.conferencebookings = new HashSet<conferencebooking>();
+        }
         public HttpPostedFileBase ImageFile { get; set; }
         public int HallId { get; set; }
         public string CityName { get; set; }
@@ -23,9 +29,14 @@ namespace trytry.Models
         public string image { get; set; }
         public string fooditems { get; set; }
         public Nullable<int> capacity { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> time { get; set; }
         public Nullable<int> budget { get; set; }
         public string address { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<conferencebooking> conferencebookings { get; set; }
     }
 }

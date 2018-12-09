@@ -1,40 +1,36 @@
-﻿@model IEnumerable<trytry.Models.hoteladmin>
+﻿@model IEnumerable<trytry.Models.hoteladmin1>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-
-<div>
-    <h4>Room Booking</h4>
-    <hr />
+<div class="container">
+    <h2 class="text-center">Rooms</h2>
     @foreach (var item in Model)
     {
-        <div>
-            <div>
-
- 
-              
-                <h3>@item.hotelname</h3>
-                <h3>@item.address</h3>
-                <h3>@item.roomtype</h3>
-                <h3>@item.facilities</h3>
-                <h3>@item.budget</h3>
-                <h3>@item.CityName</h3>
-
-
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <h3 class="text-center">@item.CityName</h3>
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h3>@item.hotelname</h3>
+                    <h4>Address:@item.address</h4>
+                    <h5>Facilities:@item.facilities</h5>
+                    <h6>Budget:@item.budget</h6>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CityId })`
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CityId })
+                </p>
             </div>
-            <div>
-                <img src=" @Url.Content(item.image) " height=" 350" width="250" />
-            </div>
 
-
-
-            <div><p>@Html.ActionLink("Edit", "Edit", new { id = item.HotelId })` </p></div>
-            <div><p>@Html.ActionLink("Delete", "Delete", new { id = item.HotelId })</p></div>
         </div>
+    </div>
     }
 </div>
+
+          
 <p>
   
     @Html.ActionLink("Add Room", "Create")

@@ -11,7 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class conference
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,6 +28,8 @@ namespace trytry.Models
         public byte[] image { get; set; }
         public string fooditems { get; set; }
         public Nullable<int> capacity { get; set; }
+        [Display(Name = "Check In Date")]
+        [DataType(DataType.Date)]
         public string date { get; set; }
         public string time { get; set; }
         public Nullable<int> budget { get; set; }
