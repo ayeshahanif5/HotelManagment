@@ -11,7 +11,9 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
+
     public partial class wedding1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,22 +22,51 @@ namespace trytry.Models
             this.weddingbookings = new HashSet<weddingbooking>();
             this.weddingbookings1 = new HashSet<weddingbooking>();
         }
-        public HttpPostedFileBase ImageFile { get; set; }
+    
         public int HallId { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string CityName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string HallName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string facilities { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string image { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("[A-Za-z]*", ErrorMessage = "Invalid Input ")]
         public string fooditems { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [MinLength(1)]
         public Nullable<int> capacity { get; set; }
+
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> date { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Time)]
         public Nullable<System.TimeSpan> time { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [MinLength(1)]
         public Nullable<int> budget { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("([a-zA-Z0-9_ .&'-]+)", ErrorMessage = "Invalid.")]
         public string address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<weddingbooking> weddingbookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<weddingbooking> weddingbookings1 { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

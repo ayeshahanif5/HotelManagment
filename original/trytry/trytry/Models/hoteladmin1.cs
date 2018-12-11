@@ -13,6 +13,7 @@ namespace trytry.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+
     public partial class hoteladmin1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,25 +21,50 @@ namespace trytry.Models
         {
             this.roombooking2 = new HashSet<roombooking2>();
         }
-        public HttpPostedFileBase ImageFile { get; set; }
+    
         public int HotelId { get; set; }
+
+
         public Nullable<int> CityId { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string hotelname { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("([a-zA-Z0-9_ .&'-]+)", ErrorMessage = "Invalid.")]
         public string address { get; set; }
+
+
         public string roomtype { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string facilities { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string image { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [MinLength(1)]
         public Nullable<int> budget { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("[^0-9]", ErrorMessage = "Input must be numeric")]
         public Nullable<int> avaliablerooms { get; set; }
-        [Display(Name = "Check In Date")]
+
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
-        [Display(Name = "Check In Date")]
+
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string CityName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<roombooking2> roombooking2 { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

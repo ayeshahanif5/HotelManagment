@@ -12,12 +12,18 @@ namespace trytry.Models
     using System;
     using System.Collections.Generic;
     using System.Web;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class City
     {
         public int CityId { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string CityName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string image { get; set; }
+
         public HttpPostedFileBase ImageFile { get; set; }
     }
 }

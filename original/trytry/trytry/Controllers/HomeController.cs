@@ -12,8 +12,8 @@ namespace trytry.Controllers
 {
     public class HomeController : Controller
     {
-        hotelEntities7 dc = new hotelEntities7();
-        string connectionstring = @"Data Source=.;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        hotelEntities8 dc = new hotelEntities8();
+        string connectionstring = @"Data Source=DESKTOP-1M6H1PO\ANUMSQL;Initial Catalog=hotel;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
         private object db;
         public ActionResult Index()
         {
@@ -43,10 +43,10 @@ namespace trytry.Controllers
         [HttpGet]
        public ActionResult Book_Now()
         {
-            return View(new roombooking());
+            return View(new roombooking2());
         }
         [HttpPost]
-        public ActionResult Book_Now(roombooking room,int HotelId)
+        public ActionResult Book_Now(roombooking2 room,int HotelId)
         {
             using (SqlConnection con = new SqlConnection(connectionstring))
             {
@@ -226,52 +226,19 @@ namespace trytry.Controllers
         public ActionResult Cities_wedding()
         {
 
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from City";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            return View(dc.Cities.ToList());
         }
 
         public ActionResult Cities_conference()
         {
 
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from City";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            return View(dc.Cities.ToList());
         }
 
         public ActionResult Cities_table()
         {
 
-            DataTable dt = new DataTable();
-            using (SqlConnection con = new SqlConnection(connectionstring))
-            {
-                con.Open();
-                string query = "Select * from City";
-                SqlDataAdapter ada = new SqlDataAdapter(query, con);
-
-                ada.Fill(dt);
-                con.Close();
-
-            }
-            return View(dt);
+            return View(dc.Cities.ToList());
         }
         [HttpGet]
         public ActionResult Contact()
@@ -379,7 +346,9 @@ namespace trytry.Controllers
            
             else
             {
-                ViewData["Error"] = "Incorrect Email and Password";
+                 ViewData["Error"] = "Incorrect Email and Password";
+                
+                
             }
             
             //else

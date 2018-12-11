@@ -20,8 +20,8 @@
                     <h5>Facilities:@item.facilities</h5>
                     <h6>Budget:@item.budget</h6>
                     <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CityId })`
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CityId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.HotelId })`
+                    @Html.ActionLink("Delete", "Delete", new { id = item.HotelId})
                 </p>
             </div>
 
@@ -34,6 +34,9 @@
 <p>
   
     @Html.ActionLink("Add Room", "Create")
+  
+
 </p>
+<p>@Html.ActionLink("Back To List", "Index", "Admin")</p>
 
 

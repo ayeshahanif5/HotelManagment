@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hotelModel1StoreContainer" CdmEntityContainer="hotelEntities8">
+    <EntitySetMapping Name="bookingtables">
+      <EntityTypeMapping TypeName="hotelModel1.bookingtable">
+        <MappingFragment StoreEntitySet="bookingtable">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone_No" ColumnName="Phone No" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="personno" ColumnName="personno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="c">
+      <EntityTypeMapping TypeName="hotelModel1.c">
+        <MappingFragment StoreEntitySet="c">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="hotelModel1.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conferences">
+      <EntityTypeMapping TypeName="hotelModel1.conference">
+        <MappingFragment StoreEntitySet="conference">
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="facilities" ColumnName="facilities" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="fooditems" ColumnName="fooditems" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conferenceadmin1">
+      <EntityTypeMapping TypeName="hotelModel1.conferenceadmin1">
+        <MappingFragment StoreEntitySet="conferenceadmin1">
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="facilities" ColumnName="facilities" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="fooditems" ColumnName="fooditems" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conferencebookings">
+      <EntityTypeMapping TypeName="hotelModel1.conferencebooking">
+        <MappingFragment StoreEntitySet="conferencebooking">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone_No" ColumnName="Phone No" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="Noofpeople" ColumnName="Noofpeople" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactUs">
+      <EntityTypeMapping TypeName="hotelModel1.ContactU">
+        <MappingFragment StoreEntitySet="ContactUs">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hotels">
+      <EntityTypeMapping TypeName="hotelModel1.hotel">
+        <MappingFragment StoreEntitySet="hotel">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="hotelname" ColumnName="hotelname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+          <ScalarProperty Name="facilities" ColumnName="facilities" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="avaliablerooms" ColumnName="avaliablerooms" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hoteladmin1">
+      <EntityTypeMapping TypeName="hotelModel1.hoteladmin1">
+        <MappingFragment StoreEntitySet="hoteladmin1">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="hotelname" ColumnName="hotelname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+          <ScalarProperty Name="facilities" ColumnName="facilities" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="avaliablerooms" ColumnName="avaliablerooms" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="hotelModel1.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roombooking2">
+      <EntityTypeMapping TypeName="hotelModel1.roombooking2">
+        <MappingFragment StoreEntitySet="roombooking2">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="HotellId" ColumnName="HotellId" />
+          <ScalarProperty Name="Roomno" ColumnName="Roomno" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phoneno" ColumnName="Phoneno" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="Hallname" ColumnName="Hallname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roombookingssssssses">
+      <EntityTypeMapping TypeName="hotelModel1.roombookingsssssss">
+        <MappingFragment StoreEntitySet="roombookingsssssss">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="HotellId" ColumnName="HotellId" />
+          <ScalarProperty Name="Roomno" ColumnName="Roomno" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phoneno" ColumnName="Phoneno" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="Hallname" ColumnName="Hallname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sign_In">
+      <EntityTypeMapping TypeName="hotelModel1.Sign_In">
+        <MappingFragment StoreEntitySet="Sign_In">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tableadmin1">
+      <EntityTypeMapping TypeName="hotelModel1.tableadmin1">
+        <MappingFragment StoreEntitySet="tableadmin1">
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="personno" ColumnName="personno" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tablebookings">
+      <EntityTypeMapping TypeName="hotelModel1.tablebooking">
+        <MappingFragment StoreEntitySet="tablebooking">
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="personno" ColumnName="personno" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wedding1">
+      <EntityTypeMapping TypeName="hotelModel1.wedding1">
+        <MappingFragment StoreEntitySet="wedding1">
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="facilities" ColumnName="facilities" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="fooditems" ColumnName="fooditems" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weddingbookings">
+      <EntityTypeMapping TypeName="hotelModel1.weddingbooking">
+        <MappingFragment StoreEntitySet="weddingbooking">
+          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+          <ScalarProperty Name="HallId" ColumnName="HallId" />
+          <ScalarProperty Name="HallName" ColumnName="HallName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone_No" ColumnName="Phone No" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="checkindate" ColumnName="checkindate" />
+          <ScalarProperty Name="checkoutdate" ColumnName="checkoutdate" />
+          <ScalarProperty Name="Noofpeople" ColumnName="Noofpeople" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

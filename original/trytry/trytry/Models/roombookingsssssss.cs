@@ -11,8 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    using System.Web;
+    
     public partial class roombookingsssssss
     {
         public int BookingId { get; set; }
@@ -21,14 +21,12 @@ namespace trytry.Models
         public string Name { get; set; }
         public string Phoneno { get; set; }
         public string Address { get; set; }
-        [Display(Name = "Check In Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
-        [Display(Name = "Check out Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
         public string Hallname { get; set; }
     
         public virtual hotel hotel { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

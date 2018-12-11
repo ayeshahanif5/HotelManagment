@@ -6,7 +6,7 @@
 }
 
 <div class="container">
-    <h2 class="text-center">Cities</h2>
+    <h2 class="text-center">Resturant-Tables</h2>
     @foreach (var item in Model)
     {
         <div class="col-md-3" style="margin-bottom:25px">
@@ -34,6 +34,6 @@
     @Html.ActionLink("Add Table", "Create")
 </p>
 
-
+<p>@Html.ActionLink("Back To List", "Index", "Admin")</p>
 
 

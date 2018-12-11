@@ -13,7 +13,6 @@ namespace trytry.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
-
     public partial class tableadmin1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,21 +20,32 @@ namespace trytry.Models
         {
             this.bookingtables = new HashSet<bookingtable>();
         }
-        public HttpPostedFileBase ImageFile { get; set; }
+    
         public int TableId { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string CityName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string HallName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("([a-zA-Z0-9_ .&'-]+)", ErrorMessage = "Invalid.")]
         public string address { get; set; }
+
+
         public Nullable<int> personno { get; set; }
-        [Display(Name = "Check In Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> starttime { get; set; }
         public Nullable<System.TimeSpan> endtime { get; set; }
         public Nullable<int> budget { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bookingtable> bookingtables { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

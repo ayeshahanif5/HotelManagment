@@ -1,32 +1,22 @@
-﻿@model System.Data.DataTable
+﻿@model IEnumerable<trytry.Models.City>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_mytemplate1.cshtml";
 }
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>City Name</th>
-
-        <th>
-            Image
-        </th>
-
-
-        <th></th>
-    </tr>
-    @for (int i = 0; i < Model.Rows.Count; i++)
+<div class="container">
+    <h2 class="text-center">Cities</h2>
+    @foreach (var item in Model)
     {
-        <tr>
-            <td>@Model.Rows[i][1]</td>
-            <td><img src="@Model.Rows[i][2]" height=" 350" width="250" /></td>
-
-
-            <td>
-                <a href="@Url.Action("SHOW_table", "Home", new {@cityname=@Model.Rows[i][1]})">Show</a>
-            </td>
-        </tr>
+        <div class="col-md-3" style="margin-bottom:25px">
+            <div class="thumbnail">
+                <div class="image" style="margin-bottom:20px">
+                    <img class="img-responsive" src="@Url.Content(item.image)" height="350" width="240" />
+                </div>
+                <div class="caption" style="border-top:3px solid #808080">
+                    <h3><a href="@Url.Action("SHOW_HOTEL", "Home", new {@cityname=@item.CityName})">@item.CityName</a></h3>
+                </div>
+            </div>
+        </div>
     }
-</table>
-<a href="@Url.Action("Create","Conference")">Add Conference Hall</a>
-
+</div>

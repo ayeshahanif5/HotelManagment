@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hotelModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bookingtable">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableId" Type="int" />
+    <Property Name="HallName" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phone No" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="checkindate" Type="nvarchar(max)" />
+    <Property Name="Time" Type="time" Precision="7" />
+    <Property Name="personno" Type="int" />
+  </EntityType>
+  <EntityType Name="c">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar(max)" />
+    <Property Name="image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="conference">
+    <Key>
+      <PropertyRef Name="HallId" />
+    </Key>
+    <Property Name="HallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="facilities" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="image" />
+    <Property Name="fooditems" Type="nvarchar" MaxLength="50" />
+    <Property Name="capacity" Type="int" />
+    <Property Name="date" Type="nvarchar" MaxLength="50" />
+    <Property Name="time" Type="nvarchar" MaxLength="50" />
+    <Property Name="budget" Type="int" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="conferenceadmin1">
+    <Key>
+      <PropertyRef Name="HallId" />
+    </Key>
+    <Property Name="HallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar(max)" />
+    <Property Name="HallName" Type="nvarchar(max)" />
+    <Property Name="facilities" Type="nvarchar(max)" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="fooditems" Type="nvarchar(max)" />
+    <Property Name="capacity" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="time" Type="time" Precision="7" />
+    <Property Name="budget" Type="int" />
+    <Property Name="address" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="conferencebooking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HallId" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phone No" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="HallName" Type="nvarchar(max)" />
+    <Property Name="Noofpeople" Type="int" />
+    <Property Name="Time" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ContactUs">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone" Type="int" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="50" />
+    <Property Name="Message" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="hotel">
+    <Key>
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="HotelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="hotelname" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="roomtype" Type="nvarchar" MaxLength="50" />
+    <Property Name="facilities" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="image" />
+    <Property Name="budget" Type="int" />
+    <Property Name="avaliablerooms" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="hoteladmin1">
+    <Key>
+      <PropertyRef Name="HotelId" />
+    </Key>
+    <Property Name="HotelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="hotelname" Type="nvarchar(max)" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="roomtype" Type="nvarchar(max)" />
+    <Property Name="facilities" Type="nvarchar(max)" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="budget" Type="int" />
+    <Property Name="avaliablerooms" Type="int" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="CityName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roombooking2">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotellId" Type="int" />
+    <Property Name="Roomno" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phoneno" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="Hallname" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="roombookingsssssss">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotellId" Type="int" />
+    <Property Name="Roomno" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="Hallname" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Sign_In">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tableadmin1">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar(max)" />
+    <Property Name="HallName" Type="nvarchar(max)" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="personno" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="starttime" Type="time" Precision="7" />
+    <Property Name="endtime" Type="time" Precision="7" />
+    <Property Name="budget" Type="int" />
+    <Property Name="image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tablebooking">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Name="TableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="personno" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="starttime" Type="time" Precision="7" />
+    <Property Name="endtime" Type="time" Precision="7" />
+    <Property Name="budget" Type="int" />
+    <Property Name="image" Type="image" />
+  </EntityType>
+  <EntityType Name="wedding1">
+    <Key>
+      <PropertyRef Name="HallId" />
+    </Key>
+    <Property Name="HallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="HallName" Type="nvarchar" MaxLength="50" />
+    <Property Name="facilities" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="fooditems" Type="nvarchar" MaxLength="50" />
+    <Property Name="capacity" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="time" Type="time" Precision="7" />
+    <Property Name="budget" Type="int" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="weddingbooking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HallId" Type="int" />
+    <Property Name="HallName" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Phone No" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="checkindate" Type="date" />
+    <Property Name="checkoutdate" Type="date" />
+    <Property Name="Noofpeople" Type="int" />
+    <Property Name="Time" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_bookingtable_tableadmin1">
+    <End Role="tableadmin1" Type="Self.tableadmin1" Multiplicity="0..1" />
+    <End Role="bookingtable" Type="Self.bookingtable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableadmin1">
+        <PropertyRef Name="TableId" />
+      </Principal>
+      <Dependent Role="bookingtable">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookingtable_tablebooking">
+    <End Role="tablebooking" Type="Self.tablebooking" Multiplicity="0..1" />
+    <End Role="bookingtable" Type="Self.bookingtable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tablebooking">
+        <PropertyRef Name="TableId" />
+      </Principal>
+      <Dependent Role="bookingtable">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_conferencebooking_conference">
+    <End Role="conference" Type="Self.conference" Multiplicity="0..1" />
+    <End Role="conferencebooking" Type="Self.conferencebooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="conference">
+        <PropertyRef Name="HallId" />
+      </Principal>
+      <Dependent Role="conferencebooking">
+        <PropertyRef Name="HallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_conferencebooking_conferenceadmin1">
+    <End Role="conferenceadmin1" Type="Self.conferenceadmin1" Multiplicity="0..1" />
+    <End Role="conferencebooking" Type="Self.conferencebooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="conferenceadmin1">
+        <PropertyRef Name="HallId" />
+      </Principal>
+      <Dependent Role="conferencebooking">
+        <PropertyRef Name="HallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hotel_City">
+    <End Role="c" Type="Self.c" Multiplicity="0..1" />
+    <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="c">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="hotel">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roombooking_hotel">
+    <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
+    <End Role="roombookingsssssss" Type="Self.roombookingsssssss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotel">
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="roombookingsssssss">
+        <PropertyRef Name="HotellId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roombooking2_hoteladmin1">
+    <End Role="hoteladmin1" Type="Self.hoteladmin1" Multiplicity="0..1" />
+    <End Role="roombooking2" Type="Self.roombooking2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hoteladmin1">
+        <PropertyRef Name="HotelId" />
+      </Principal>
+      <Dependent Role="roombooking2">
+        <PropertyRef Name="HotellId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_weddingbooking_wedding1">
+    <End Role="wedding1" Type="Self.wedding1" Multiplicity="0..1" />
+    <End Role="weddingbooking" Type="Self.weddingbooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wedding1">
+        <PropertyRef Name="HallId" />
+      </Principal>
+      <Dependent Role="weddingbooking">
+        <PropertyRef Name="HallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_weddingbooking_wedding11">
+    <End Role="wedding1" Type="Self.wedding1" Multiplicity="0..1" />
+    <End Role="weddingbooking" Type="Self.weddingbooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wedding1">
+        <PropertyRef Name="HallId" />
+      </Principal>
+      <Dependent Role="weddingbooking">
+        <PropertyRef Name="HallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hotelModel1StoreContainer">
+    <EntitySet Name="bookingtable" EntityType="Self.bookingtable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="c" EntityType="Self.c" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="conference" EntityType="Self.conference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="conferenceadmin1" EntityType="Self.conferenceadmin1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="conferencebooking" EntityType="Self.conferencebooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hotel" EntityType="Self.hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hoteladmin1" EntityType="Self.hoteladmin1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roombooking2" EntityType="Self.roombooking2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roombookingsssssss" EntityType="Self.roombookingsssssss" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sign_In" EntityType="Self.Sign_In" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableadmin1" EntityType="Self.tableadmin1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tablebooking" EntityType="Self.tablebooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="wedding1" EntityType="Self.wedding1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="weddingbooking" EntityType="Self.weddingbooking" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_bookingtable_tableadmin1" Association="Self.FK_bookingtable_tableadmin1">
+      <End Role="tableadmin1" EntitySet="tableadmin1" />
+      <End Role="bookingtable" EntitySet="bookingtable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookingtable_tablebooking" Association="Self.FK_bookingtable_tablebooking">
+      <End Role="tablebooking" EntitySet="tablebooking" />
+      <End Role="bookingtable" EntitySet="bookingtable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_conferencebooking_conference" Association="Self.FK_conferencebooking_conference">
+      <End Role="conference" EntitySet="conference" />
+      <End Role="conferencebooking" EntitySet="conferencebooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_conferencebooking_conferenceadmin1" Association="Self.FK_conferencebooking_conferenceadmin1">
+      <End Role="conferenceadmin1" EntitySet="conferenceadmin1" />
+      <End Role="conferencebooking" EntitySet="conferencebooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hotel_City" Association="Self.FK_hotel_City">
+      <End Role="c" EntitySet="c" />
+      <End Role="hotel" EntitySet="hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roombooking_hotel" Association="Self.FK_roombooking_hotel">
+      <End Role="hotel" EntitySet="hotel" />
+      <End Role="roombookingsssssss" EntitySet="roombookingsssssss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roombooking2_hoteladmin1" Association="Self.FK_roombooking2_hoteladmin1">
+      <End Role="hoteladmin1" EntitySet="hoteladmin1" />
+      <End Role="roombooking2" EntitySet="roombooking2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_weddingbooking_wedding1" Association="Self.FK_weddingbooking_wedding1">
+      <End Role="wedding1" EntitySet="wedding1" />
+      <End Role="weddingbooking" EntitySet="weddingbooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_weddingbooking_wedding11" Association="Self.FK_weddingbooking_wedding11">
+      <End Role="wedding1" EntitySet="wedding1" />
+      <End Role="weddingbooking" EntitySet="weddingbooking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

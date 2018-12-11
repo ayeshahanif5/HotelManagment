@@ -11,8 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    using System.Web;
+    
     public partial class tablebooking
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,8 +26,6 @@ namespace trytry.Models
         public string HallName { get; set; }
         public string address { get; set; }
         public Nullable<int> personno { get; set; }
-        [Display(Name = "Check In Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> starttime { get; set; }
         public Nullable<System.TimeSpan> endtime { get; set; }
@@ -36,5 +34,6 @@ namespace trytry.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bookingtable> bookingtables { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

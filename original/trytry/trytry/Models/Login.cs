@@ -11,10 +11,15 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Login
     {
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string Password { get; set; }
     }
 }

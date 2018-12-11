@@ -11,8 +11,8 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Web;
+    
     public partial class hotel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace trytry.Models
         {
             this.roombookingssssssses = new HashSet<roombookingsssssss>();
         }
-        
+    
         public int HotelId { get; set; }
         public Nullable<int> CityId { get; set; }
         public string hotelname { get; set; }
@@ -30,11 +30,7 @@ namespace trytry.Models
         public byte[] image { get; set; }
         public Nullable<int> budget { get; set; }
         public string avaliablerooms { get; set; }
-        [Display(Name = "Check In Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
-        [Display(Name = "Check out Date")]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
         public string CityName { get; set; }
     

@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li>@Html.ActionLink("Conference Hall", "Index", "Conference")</li>
 
                                 <li>@Html.ActionLink("Wedding Hall", "Index", "Wedding")</li>
-                                <li>@Html.ActionLink("Resturant", "Index", "Table")</li>
+                                <li>@Html.ActionLink("Table Booking", "Index", "Table")</li>
 
                             </ul>
                         </nav>
@@ -153,5 +153,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
         @RenderBody()
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

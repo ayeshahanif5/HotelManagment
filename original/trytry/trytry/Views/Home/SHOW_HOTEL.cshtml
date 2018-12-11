@@ -72,7 +72,7 @@
             <td>@Model.Rows[i][3]</td>
             <td>@Model.Rows[i][5]</td>
             <td>@Model.Rows[i][7]</td>
-         
+            <td><img class="img-responsive" src="@Model.Rows[i][6]" /></td>
             <td><a href="@Url.Action("Book_Now", "Home", new {@HotelId=@Model.Rows[i][0]})">Book Now</a></td>
         </tr>
         @*<tr><a href="@Url.Action("Book_Now", "Home", new {@hotelname=@Model.Rows[i][2]})">Hotels</a></tr>*@

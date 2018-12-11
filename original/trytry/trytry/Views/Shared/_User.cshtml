@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li>@Html.ActionLink("Services", "Services", "Home")</li>
 
                                 <li>@Html.ActionLink("Gallery", "Gallery", "Home")</li>
-                                @*<li>@Html.ActionLink("Cities", "Cities", "Home")</li>*@
+                                <li>@Html.ActionLink("Cities", "Login", "Home")</li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                 <li>@Html.ActionLink("Create Account", "Sign_In", "Home")</li>
                                 <li>@Html.ActionLink("Login", "Login", "Home")</li>
@@ -156,5 +156,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
         @RenderBody()
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

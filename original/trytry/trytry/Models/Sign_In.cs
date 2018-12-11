@@ -11,16 +11,40 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Sign_In
     {
+        [Required(ErrorMessage ="This field is required")]
+        [RegularExpression("[A-Za-z]*", ErrorMessage = "Invalid Name ")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public Nullable<bool> Gender { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DOB { get; set; }
+
+
+        [Required(ErrorMessage = "This field is required")]
+        //[StringLength(50)]
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
         public string City { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Password)]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
     }
 }

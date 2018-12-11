@@ -11,26 +11,54 @@ namespace trytry.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class weddingbooking
     {
         public int BookingId { get; set; }
         public Nullable<int> HallId { get; set; }
         public string HallName { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "User Name")]
+        [RegularExpression("[A-Za-z]*", ErrorMessage = "Invalid Name ")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Cell #")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Entered phone format is not valid.(3*********")]
         public Nullable<int> Phone_No { get; set; }
+
+
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("([a-zA-Z0-9_ .&'-]+)", ErrorMessage = "Invalid.")]
         public string Address { get; set; }
-        [Display(Name = "Check In Date")]
+
+
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Check in Date")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkindate { get; set; }
+
+
+        [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Check out Date")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> checkoutdate { get; set; }
+
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "No of Persons")]
+        [MinLength(1)]
+        [RegularExpression("[^0-9]", ErrorMessage = "Input must be numeric")]
         public Nullable<int> Noofpeople { get; set; }
         public string Time { get; set; }
     
         public virtual wedding1 wedding1 { get; set; }
         public virtual wedding1 wedding11 { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
